@@ -1,5 +1,6 @@
 <script setup>
     import AuthenticatedLayout from "../Layouts/AuthenticatedLayout.svelte";
+    import { Card } from 'flowbite-svelte';
     import { Heading } from "flowbite-svelte";
 
     import { onMount } from "svelte";
