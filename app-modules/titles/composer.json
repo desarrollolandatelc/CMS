@@ -1,0 +1,24 @@
+{
+	"name": "modules/titles",
+	"description": "",
+	"type": "library",
+	"version": "1.0",
+	"license": "proprietary",
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Modules\\Titles\\": "src/",
+			"Modules\\Titles\\Tests\\": "tests/",
+			"Modules\\Titles\\Database\\Factories\\": "database/factories/",
+			"Modules\\Titles\\Database\\Seeders\\": "database/seeders/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Modules\\Titles\\Providers\\TitlesServiceProvider"
+			]
+		}
+	}
+}
