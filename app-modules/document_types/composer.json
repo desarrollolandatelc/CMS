@@ -1,0 +1,24 @@
+{
+	"name": "modules/document_types",
+	"description": "",
+	"type": "library",
+	"version": "1.0",
+	"license": "proprietary",
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Modules\\DocumentTypes\\": "src/",
+			"Modules\\DocumentTypes\\Tests\\": "tests/",
+			"Modules\\DocumentTypes\\Database\\Factories\\": "database/factories/",
+			"Modules\\DocumentTypes\\Database\\Seeders\\": "database/seeders/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Modules\\DocumentTypes\\Providers\\DocumentTypesServiceProvider"
+			]
+		}
+	}
+}

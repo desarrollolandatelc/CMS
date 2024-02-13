@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "26dc123ddbbe98efb5612dc70ac448c5",
+    "content-hash": "b87b2616081b1bdd89bc2ce9a1e22cbf",
     "packages": [
         {
             "name": "brick/math",
@@ -1895,12 +1895,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "c33547bf6b179bc9c40741be8d5c4d35438b66c9"
+                "reference": "255547315d1f7c7a841bb1939ae39a4a50bd96c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/c33547bf6b179bc9c40741be8d5c4d35438b66c9",
-                "reference": "c33547bf6b179bc9c40741be8d5c4d35438b66c9",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/255547315d1f7c7a841bb1939ae39a4a50bd96c0",
+                "reference": "255547315d1f7c7a841bb1939ae39a4a50bd96c0",
                 "shasum": ""
             },
             "require": {
@@ -2091,7 +2091,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-02-09T17:52:44+00:00"
+            "time": "2024-02-12T17:15:00+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -2735,6 +2735,102 @@
                 }
             ],
             "time": "2024-01-28T23:22:08+00:00"
+        },
+        {
+            "name": "modules/clients",
+            "version": "1.0",
+            "dist": {
+                "type": "path",
+                "url": "app-modules/clients",
+                "reference": "53cee90f13db700f899f881c1fe0db9f1f6b3f9f"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Modules\\Clients\\Providers\\ClientsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Modules\\Clients\\": "src/",
+                    "Modules\\Clients\\Tests\\": "tests/",
+                    "Modules\\Clients\\Database\\Factories\\": "database/factories/",
+                    "Modules\\Clients\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "modules/document_types",
+            "version": "1.0",
+            "dist": {
+                "type": "path",
+                "url": "app-modules/document_types",
+                "reference": "750340e67648e07a7116b6d306610d20af6cb486"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Modules\\DocumentTypes\\Providers\\DocumentTypesServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Modules\\DocumentTypes\\": "src/",
+                    "Modules\\DocumentTypes\\Tests\\": "tests/",
+                    "Modules\\DocumentTypes\\Database\\Factories\\": "database/factories/",
+                    "Modules\\DocumentTypes\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "modules/person_types",
+            "version": "1.0",
+            "dist": {
+                "type": "path",
+                "url": "app-modules/person_types",
+                "reference": "8c688513a389f8b9a1e4cab0caaa02da88569e49"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Modules\\PersonTypes\\Providers\\PersonTypesServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Modules\\PersonTypes\\": "src/",
+                    "Modules\\PersonTypes\\Tests\\": "tests/",
+                    "Modules\\PersonTypes\\Database\\Factories\\": "database/factories/",
+                    "Modules\\PersonTypes\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
         },
         {
             "name": "modules/titles",
