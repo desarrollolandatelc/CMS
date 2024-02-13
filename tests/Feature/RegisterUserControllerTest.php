@@ -7,7 +7,7 @@ test('test_only_admin_can_register_users', function () {
     $adminUser = User::factory()->create();
 
     $role = Role::create([
-        'name' => 'administrator'
+        'name' => 'administrador'
     ]);
 
     $adminUser->assignRole($role);
@@ -15,10 +15,11 @@ test('test_only_admin_can_register_users', function () {
     $userData = [
         'name' => 'John Doe',
         'email' => 'jane@example.com',
-        'role' => 'administrator',
+        'role' => 'administrador',
+        'status' => 1
     ];
 
-    $response = $this->actingAs($adminUser)->post(route('register'), $userData);
+    $response = $this->actingAs($adminUser)->post(route('register.store'), $userData);
 
     $response->assertStatus(302); // Assuming a redirect happens after successful registration
     $this->assertDatabaseHas('users', ['name' => 'John Doe', 'email' => 'jane@example.com']);
@@ -29,7 +30,7 @@ test('test_registration_fails_without_required_fields', function () {
     $adminUser = User::factory()->create();
 
     $role = Role::create([
-        'name' => 'administrator'
+        'name' => 'administrador'
     ]);
 
     $adminUser->assignRole($role);
@@ -38,9 +39,10 @@ test('test_registration_fails_without_required_fields', function () {
         'name' => '', // Leave required fields empty
         'email' => '',
         'role' => '',
+        'status' => 1
     ];
 
-    $response = $this->actingAs($adminUser)->post(route('register'), $userData);
+    $response = $this->actingAs($adminUser)->post(route('register.store'), $userData);
     $response->assertSessionHasErrors(['name', 'email', 'role']);
 });
 

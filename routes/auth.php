@@ -59,5 +59,5 @@ Route::prefix('admin')->middleware(['auth', 'verified', 'role:administrador|desa
     Route::get('user/register', [RegisteredUserController::class, 'create'])
         ->name('register');
 
-    Route::post('user/register', [RegisteredUserController::class, 'store']);
+    Route::post('user/register', [RegisteredUserController::class, 'store'])->name('register.store');
 });

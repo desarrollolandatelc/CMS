@@ -15,7 +15,7 @@ beforeEach(function () {
 
     // Creamos un role
     $role = Role::create([
-        'name' => 'administrador',
+        'name' => 'administrator',
     ]);
 
     // Asignamos el role al usuario
@@ -37,11 +37,12 @@ beforeEach(function () {
     // Asignamos el tipo de persona al tipo de documento
     $this->documentType = $this->personType->documentTypes()->create($documentType);
 
- 
+    // Logueamos al usuario
+    $this->actingAs($this->admin);
 
 });
 
-test('an_administrator_can_create_clients_without_discounts_address_or_phone', function () {
+test('an_administrator_can_create_providers_without_address_or_phone', function () {
 
     // Define the data for the new client
     $clientData = [
@@ -55,16 +56,17 @@ test('an_administrator_can_create_clients_without_discounts_address_or_phone', f
     ];
 
     // Perform the post request to the client registration route
-    $response = $this->actingAs($this->admin)->post(route('clients.store'), $clientData);
+    $response = $this->post(route('providers.store'), $clientData);
     // Assert the client was created successfully
     $response->assertStatus(302); // Assuming redirect after successful creation
-    $response->assertSessionHas('success', 'Client created successfully.');
+    $response->assertSessionHas('success', 'Provider created successfully.');
 
     // Assert the client exists in the database
-    $this->assertDatabaseHas('clients', $clientData);
+    $this->assertDatabaseHas('providers', $clientData);
 });
 
-test('an_administrator_can_create_clients_with_discounts_address_and_phone', function () {
+test('an_administrator_can_create_providers_with_address_and_phone', function () {
+
     // Define the data for the new client
     $clientData = [
         'name' => 'New Client',
@@ -72,12 +74,6 @@ test('an_administrator_can_create_clients_with_discounts_address_and_phone', fun
         'email' => 'client@example.com',
         'phone' => '1234567890',
         'address' => '123 Main St',
-        'discounts' => [
-            [
-                'provider_name' => 'Mi proveedor',
-                'percentage' => 10
-            ]
-        ],
         'person_type_id' => $this->personType->id,
         'document_type_id' => $this->documentType->id,
         'document_number' => '123456789',
@@ -85,32 +81,17 @@ test('an_administrator_can_create_clients_with_discounts_address_and_phone', fun
     ];
 
     // Perform the post request to the client registration route
-    $response = $this->actingAs($this->admin)->post(route('clients.store'), $clientData);
+    $response = $this->post(route('providers.store'), $clientData);
     // Assert the client was created successfully
     $response->assertStatus(302); // Assuming redirect after successful creation
-    $response->assertSessionHas('success', 'Client created successfully.');
+    $response->assertSessionHas('success', 'Provider created successfully.');
 
     // Assert the client exists in the database
-    $this->assertDatabaseHas('clients', [
-        'name' => 'New Client',
-        'alias' => Str::slug('New Client'),
-        'email' => 'client@example.com',
-        'phone' => '1234567890',
-        'address' => '123 Main St',
-        'discounts' => json_encode([
-            [
-                'provider_name' => 'Mi proveedor',
-                'percentage' => 10
-            ]
-        ]),
-        'person_type_id' => $this->personType->id,
-        'document_type_id' => $this->documentType->id,
-        'document_number' => '123456789',
-        'status' => 1
-    ]);
+    $this->assertDatabaseHas('providers', $clientData);
 });
 
-test('an_non_administrator_cannot_create_clients', function () {
+
+test('an_non_administrator_cannot_create_providers', function () {
 
     $defaultUser = User::factory()->create();
 
@@ -128,10 +109,10 @@ test('an_non_administrator_cannot_create_clients', function () {
         'status' => 1
     ];
     // Perform the post request to the client registration route
-    $response = $this->post(route('clients.store'), $clientData);
+    $response = $this->post(route('providers.store'), $clientData);
     // Assert the client was created successfully
     $response->assertStatus(403);
 
     // Assert the client exists in the database
-    $this->assertDatabaseMissing('clients', $clientData);
+    $this->assertDatabaseMissing('providers', $clientData);
 });

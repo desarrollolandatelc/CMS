@@ -35,7 +35,7 @@ class HandleInertiaRequests extends Middleware
                 ? $request->user()->only('id', 'name', 'email')
                 : null,
             'auth.role' => fn () => $request->user()
-                ? $request->user()->roles?->first()->name
+                ? $request->user()->roles?->first()?->name
                 : null,
             'flash' => [
                 'error' => fn () => $request->session()->get('error')

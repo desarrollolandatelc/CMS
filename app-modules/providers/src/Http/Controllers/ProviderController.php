@@ -1,16 +1,16 @@
 <?php
 
-namespace Modules\Clients\Http\Controllers;
+namespace Modules\Providers\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use Modules\Clients\Models\Client;
+use Modules\Providers\Models\Provider;
 
-class ClientController extends Controller
+class ProviderController extends Controller
 {
     /**
-     * Store a newly created client in storage.
+     * Store a newly created provider in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -20,7 +20,7 @@ class ClientController extends Controller
         $request->validate([
             'name' => [
                 'required',
-                Rule::unique('clients', 'name')->where(function ($query) use ($request) {
+                Rule::unique('providers', 'name')->where(function ($query) use ($request) {
                     $query->where('document_number', $request->document_number);
                 })
             ],
@@ -34,7 +34,7 @@ class ClientController extends Controller
 
         // Assuming $clientModel is your Client model.
         // You would need to replace '$clientModel' with the actual model name.
-        Client::create($request->all());
-        return redirect()->route('clients.create')->with('success', 'Client created successfully.');
+        Provider::create($request->all());
+        return redirect()->route('clients.create')->with('success', 'Provider created successfully.');
     }
 }

@@ -17,6 +17,7 @@
         "modules/clients": "*",
         "modules/document_types": "*",
         "modules/person_types": "*",
+        "modules/providers": "*",
         "modules/titles": "*",
         "pusher/pusher-php-server": "^7.2",
         "spatie/laravel-permission": "^6.3",
