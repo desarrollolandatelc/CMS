@@ -6,6 +6,7 @@ use Modules\PersonTypes\Models\PersonType;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 use Illuminate\Support\Str;
+use Modules\Clients\Models\Client;
 use Modules\Providers\Models\Provider;
 
 uses(TestCase::class, RefreshDatabase::class);
@@ -137,6 +138,103 @@ test('an_non_administrator_cannot_create_clients', function () {
     ];
     // Perform the post request to the client registration route
     $response = $this->post(route('clients.store'), $clientData);
+    // Assert the client was created successfully
+    $response->assertStatus(403);
+
+    // Assert the client exists in the database
+    $this->assertDatabaseMissing('clients', $clientData);
+});
+
+test('an_administrator_can_update_clients_without_discounts_address_or_phone', function () {
+    $client = Client::create([
+        'name' => 'Old Client',
+        'alias' => Str::slug('Old Client'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ]);
+    // Define the data for the new client
+    $clientData = [
+        'name' => 'Changed Client',
+        'alias' => Str::slug('Changed Client'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ];
+
+    // Perform the post request to the client registration route
+    $response = $this->actingAs($this->admin)->put(route('clients.update', $client->id), $clientData);
+    // Assert the client was created successfully
+    $response->assertStatus(302); // Assuming redirect after successful creation
+    $response->assertSessionHas('success', 'Client updated successfully.');
+
+    // Assert the client exists in the database
+    $this->assertDatabaseHas('clients', $clientData);
+});
+
+
+test('an_administrator_can_update_clients_without_changes', function () {
+    $client = Client::create([
+        'name' => 'Old Client',
+        'alias' => Str::slug('Old Client'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ]);
+    // Define the data for the new client
+    $clientData = [
+        'name' => 'Old Client',
+        'alias' => Str::slug('Old Client'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ];
+
+    // Perform the post request to the client registration route
+    $response = $this->actingAs($this->admin)->put(route('clients.update', $client->id), $clientData);
+    // Assert the client was created successfully
+    $response->assertStatus(302); // Assuming redirect after successful creation
+    $response->assertSessionHas('success', 'Client updated successfully.');
+
+    // Assert the client exists in the database
+    $this->assertDatabaseHas('clients', $clientData);
+});
+
+
+test('non_administrator_can_update_clients', function () {
+
+    $defaultUser = User::factory()->create();
+
+    $client = Client::create([
+        'name' => 'Old Client',
+        'alias' => Str::slug('Old Client'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ]);
+    // Define the data for the new client
+    $clientData = [
+        'name' => 'changed Client',
+        'alias' => Str::slug('changed Client'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ];
+
+    // Perform the post request to the client registration route
+    $response = $this->actingAs($defaultUser)->put(route('clients.update', $client->id), $clientData);
     // Assert the client was created successfully
     $response->assertStatus(403);
 
