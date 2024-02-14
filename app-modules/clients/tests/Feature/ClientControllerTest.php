@@ -208,7 +208,6 @@ test('an_administrator_can_update_clients_without_changes', function () {
     $this->assertDatabaseHas('clients', $clientData);
 });
 
-
 test('non_administrator_can_update_clients', function () {
 
     $defaultUser = User::factory()->create();
@@ -240,4 +239,166 @@ test('non_administrator_can_update_clients', function () {
 
     // Assert the client exists in the database
     $this->assertDatabaseMissing('clients', $clientData);
+});
+
+test('an_administrator_can_see_created_client_screen', function () {
+    $response = $this->actingAs($this->admin)->get(route('clients.create'));
+    $response->assertStatus(200);
+});
+
+test('non_administrator_can_see_created_client_screen', function () {
+    $defaultUser = User::factory()->create();
+    $response = $this->actingAs($defaultUser)->get(route('clients.create'));
+    $response->assertStatus(403);
+});
+
+test('an_administrator_can_see_edit_client_screen', function () {
+    $client = Client::create([
+        'name' => 'Old Client',
+        'alias' => Str::slug('Old Client'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ]);
+    $response = $this->actingAs($this->admin)->get(route('clients.edit', $client->id));
+    $response->assertStatus(200);
+});
+
+test('non_administrator_can_see_edit_client_screen', function () {
+    $defaultUser = User::factory()->create();
+    $client = Client::create([
+        'name' => 'Old Client',
+        'alias' => Str::slug('Old Client'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ]);
+    $response = $this->actingAs($defaultUser)->get(route('clients.edit', $client->id));
+    $response->assertStatus(403);
+});
+
+// Bulk delete action
+test('administrator_can_delete_multiple_clients', function () {
+    // Creamos un nuevo proveedor
+    $client = Client::create([
+        'name' => 'Client',
+        'alias' => Str::slug('Client'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ]);
+    // Creamos un nuevo proveedor
+    $client2 = Client::create([
+        'name' => 'Client2',
+        'alias' => Str::slug('Client2'),
+        'email' => 'client2@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '1234567891',
+        'status' => 1
+    ]);
+
+    $response = $this->actingAs($this->admin)->delete(route('clients.bulk-destroy'), [
+        'ids' => [$client->id, $client2->id]
+    ]);
+
+    $response->assertStatus(302);
+    $this->assertDatabaseMissing('clients', $client->toArray());
+    $this->assertDatabaseMissing('clients', $client2->toArray());
+});
+
+test('non_administrator_can_delete_multiple_clients', function () {
+    $defaultUser = User::factory()->create();
+
+    // Creamos un nuevo cliente
+    $client = Client::create([
+        'name' => 'Client',
+        'alias' => Str::slug('Client'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ]);
+    // Creamos un nuevo cliente
+    $client2 = Client::create([
+        'name' => 'Client2',
+        'alias' => Str::slug('Client2'),
+        'email' => 'client2@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '1234567891',
+        'status' => 1
+    ]);
+
+    $response = $this->actingAs($defaultUser)->delete(route('clients.bulk-destroy'), [
+        'ids' => [$client->id, $client2->id]
+    ]);
+
+    $response->assertStatus(403);
+});
+
+// Delete action
+test('administrator_can_delete_single_clients', function () {
+    // Creamos un nuevo proveedor
+    $client = Client::create([
+        'name' => 'Client',
+        'alias' => Str::slug('Client'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ]);
+    // Creamos un nuevo proveedor
+    $client2 = Client::create([
+        'name' => 'Client2',
+        'alias' => Str::slug('Client2'),
+        'email' => 'client2@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '1234567891',
+        'status' => 1
+    ]);
+
+    $response = $this->actingAs($this->admin)->delete(route('clients.destroy', $client->id));
+
+    $response->assertStatus(302);
+    $this->assertCount(1, Client::all());
+    $this->assertDatabaseMissing('providers', $client->toArray());
+});
+
+test('non_administrator_can_delete_single_clients', function () {
+    $defaultUser = User::factory()->create();
+    // Creamos un nuevo proveedor
+    $client = Client::create([
+        'name' => 'Client',
+        'alias' => Str::slug('Client'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ]);
+    // Creamos un nuevo proveedor
+    $client2 = Client::create([
+        'name' => 'Client2',
+        'alias' => Str::slug('Client2'),
+        'email' => 'client2@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '1234567891',
+        'status' => 1
+    ]);
+
+    $response = $this->actingAs($defaultUser)->delete(route('clients.destroy', $client->id));
+
+    $response->assertStatus(403);
+    $this->assertCount(2, Client::all());
 });

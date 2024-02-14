@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Modules\Providers\Http\Controllers\ProviderController;
 
 Route::prefix('admin')->middleware(['auth', 'verified', 'role:administrator|desarrollador'])->group(function () {
+    Route::delete('providers/bulk-delete', [ProviderController::class, 'bulkDestroy'])->name('providers.bulk-destroy');
     Route::resource('providers', ProviderController::class);
 });
 

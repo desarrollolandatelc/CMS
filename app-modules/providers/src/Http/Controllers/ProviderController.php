@@ -5,12 +5,24 @@ namespace Modules\Providers\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Inertia\Inertia;
 use Modules\Providers\Http\Controllers\Traits\HasValidation;
 use Modules\Providers\Models\Provider;
 
 class ProviderController extends Controller
 {
     use HasValidation;
+
+
+    /**
+     * Show the form for creating a new provider.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return Inertia::render('Provider/Create');
+    }
     /**
      * Store a newly created provider in storage.
      *
@@ -35,6 +47,20 @@ class ProviderController extends Controller
     }
 
     /**
+     * Show the form for editing the specified provider.
+     *
+     * @param int $id The provider ID
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(int $id)
+    {
+        $provider = Provider::find($id);
+        return Inertia::render('Provider/Edit', [
+            'provider' => $provider,
+        ]);
+    }
+
+    /**
      * Update a provider based on the given request and id.
      *
      * @param Request $request The request data
@@ -53,5 +79,30 @@ class ProviderController extends Controller
 
         $provider->update($request->all());
         return redirect()->route('providers.edit', $provider->id)->with('success', 'Provider updated successfully.');
+    }
+
+    /**
+     * Remove multiple providers from storage.
+     *
+     * @param Request $request The request data
+     * @return \Illuminate\Http\Response
+     */
+    public function bulkDestroy(Request $request)
+    {
+        Provider::destroy($request->ids);
+        return redirect()->route('providers.index')->with('success', 'Providers deleted successfully.');
+    }
+
+    /**
+     * Destroy a provider by its ID.
+     *
+     * @param datatype $id description
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(int $id)
+    {
+        $provider = Provider::find($id);
+        $provider->delete();
+        return redirect()->route('providers.index')->with('success', 'Provider deleted successfully.');
     }
 }

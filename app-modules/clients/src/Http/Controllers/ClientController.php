@@ -4,6 +4,7 @@ namespace Modules\Clients\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 use Modules\Clients\Http\Controllers\Traits\HasDiscounts;
 use Modules\Clients\Models\Client;
 use Modules\Providers\Http\Controllers\Traits\HasValidation;
@@ -11,6 +12,17 @@ use Modules\Providers\Http\Controllers\Traits\HasValidation;
 class ClientController extends Controller
 {
     use HasValidation, HasDiscounts;
+
+    /**
+     * Show the form for creating a new client.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return Inertia::render('Client/Create');
+    }
+
     /**
      * Store a newly created client in storage.
      *
@@ -30,6 +42,20 @@ class ClientController extends Controller
 
         Client::create($this->getDiscounts($request));
         return redirect()->route('clients.create')->with('success', 'Client created successfully.');
+    }
+
+    /**
+     * Show the form for editing the specified client.
+     *
+     * @param int $id The client ID
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(int $id)
+    {
+        $client = Client::find($id);
+        return Inertia::render('Client/Edit', [
+            'client' => $client,
+        ]);
     }
 
     /**
@@ -67,5 +93,30 @@ class ClientController extends Controller
         $data['discounts'] = $discounts;
 
         return $data;
+    }
+
+    /**
+     * Destroy multiple clients from storage.
+     *
+     * @param Request $request The request data
+     * @return \Illuminate\Http\Response
+     */
+    public function bulkDestroy(Request $request)
+    {
+        Client::destroy($request->ids);
+        return redirect()->route('clients.index')->with('success', 'Clients deleted successfully.');
+    }
+
+    /**
+     * Remove the specified client from storage.
+     *
+     * @param int $id The client ID
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(int $id)
+    {
+        $client = Client::find($id);
+        $client->delete();
+        return redirect()->route('clients.index')->with('success', 'Client deleted successfully.');
     }
 }

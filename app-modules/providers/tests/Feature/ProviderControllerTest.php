@@ -293,3 +293,171 @@ test('administrator_can_update_providers_without_required_fields', function () {
     // Assert the client exists in the database
     $this->assertDatabaseMissing('providers', $newClientData);
 });
+
+test('an_administrator_can_see_created_provider_screen', function () {
+    $response = $this->actingAs($this->admin)->get(route('providers.create'));
+    $response->assertStatus(200);
+});
+
+test('non_administrator_can_see_created_provider_screen', function () {
+    $defaultUser = User::factory()->create();
+    $response = $this->actingAs($defaultUser)->get(route('providers.create'));
+    $response->assertStatus(403);
+});
+
+test('an_administrator_can_see_edit_provider_screen', function () {
+    // Creamos un nuevo proveedor
+    $provider = Provider::create([
+        'name' => 'Client',
+        'alias' => Str::slug('Client'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ]);
+    $response = $this->actingAs($this->admin)->get(route('providers.edit', $provider->id));
+    $response->assertStatus(200);
+});
+
+test('non_administrator_can_see_edit_provider_screen', function () {
+
+    $defaultUser = User::factory()->create();
+    // Creamos un nuevo proveedor
+    $provider = Provider::create([
+        'name' => 'Client',
+        'alias' => Str::slug('Client'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ]);
+    $response = $this->actingAs($defaultUser)->get(route('providers.edit', $provider->id));
+    $response->assertStatus(403);
+});
+
+// Bulk delete action
+
+test('administrator_can_delete_multiple_providers', function () {
+    // Creamos un nuevo proveedor
+    $provider = Provider::create([
+        'name' => 'Client',
+        'alias' => Str::slug('Client'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ]);
+    // Creamos un nuevo proveedor
+    $provider2 = Provider::create([
+        'name' => 'Client2',
+        'alias' => Str::slug('Client2'),
+        'email' => 'client2@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '1234567891',
+        'status' => 1
+    ]);
+
+    $response = $this->actingAs($this->admin)->delete(route('providers.bulk-destroy'), [
+        'ids' => [$provider->id, $provider2->id]
+    ]);
+
+    $response->assertStatus(302);
+    $this->assertDatabaseMissing('providers', $provider->toArray());
+    $this->assertDatabaseMissing('providers', $provider2->toArray());
+});
+
+test('non_administrator_can_delete_multiple_providers', function () {
+
+    $defaultUser = User::factory()->create();
+    // Creamos un nuevo proveedor
+    $provider = Provider::create([
+        'name' => 'Client',
+        'alias' => Str::slug('Client'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ]);
+    // Creamos un nuevo proveedor
+    $provider2 = Provider::create([
+        'name' => 'Client2',
+        'alias' => Str::slug('Client2'),
+        'email' => 'client2@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '1234567891',
+        'status' => 1
+    ]);
+
+    $response = $this->actingAs($defaultUser)->delete(route('providers.bulk-destroy'), [
+        'ids' => [$provider->id, $provider2->id]
+    ]);
+
+    $response->assertStatus(403);
+});
+
+
+// Delete action
+test('administrator_can_delete_single_providers', function () {
+    // Creamos un nuevo proveedor
+    $provider = Provider::create([
+        'name' => 'Client',
+        'alias' => Str::slug('Client'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ]);
+    // Creamos un nuevo proveedor
+    $provider2 = Provider::create([
+        'name' => 'Client2',
+        'alias' => Str::slug('Client2'),
+        'email' => 'client2@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '1234567891',
+        'status' => 1
+    ]);
+
+    $response = $this->actingAs($this->admin)->delete(route('providers.destroy', $provider->id));
+
+    $response->assertStatus(302);
+    $this->assertCount(1, Provider::all());
+    $this->assertDatabaseMissing('providers', $provider->toArray());
+});
+
+test('non_administrator_can_delete_single_providers', function () {
+
+    $defaultUser = User::factory()->create();
+    // Creamos un nuevo proveedor
+    $provider = Provider::create([
+        'name' => 'Client',
+        'alias' => Str::slug('Client'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ]);
+    // Creamos un nuevo proveedor
+    $provider2 = Provider::create([
+        'name' => 'Client2',
+        'alias' => Str::slug('Client2'),
+        'email' => 'client2@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '1234567891',
+        'status' => 1
+    ]);
+
+    $response = $this->actingAs($defaultUser)->delete(route('providers.destroy', $provider->id));
+
+    $response->assertStatus(403);
+    $this->assertCount(2, Provider::all());
+});
