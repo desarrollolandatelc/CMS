@@ -6,6 +6,7 @@ use Modules\PersonTypes\Models\PersonType;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 use Illuminate\Support\Str;
+use Modules\Providers\Models\Provider;
 
 uses(TestCase::class, RefreshDatabase::class);
 
@@ -39,7 +40,6 @@ beforeEach(function () {
 
     // Logueamos al usuario
     $this->actingAs($this->admin);
-
 });
 
 test('an_administrator_can_create_providers_without_address_or_phone', function () {
@@ -90,7 +90,6 @@ test('an_administrator_can_create_providers_with_address_and_phone', function ()
     $this->assertDatabaseHas('providers', $clientData);
 });
 
-
 test('an_non_administrator_cannot_create_providers', function () {
 
     $defaultUser = User::factory()->create();
@@ -115,4 +114,182 @@ test('an_non_administrator_cannot_create_providers', function () {
 
     // Assert the client exists in the database
     $this->assertDatabaseMissing('providers', $clientData);
+});
+
+test('an_administrator_can_update_providers', function () {
+    // Creamos un nuevo proveedor
+    $provider = Provider::create([
+        'name' => 'Client',
+        'alias' => Str::slug('Client'),
+        'email' => 'client@example.com',
+        'phone' => '1234567890',
+        'address' => '123 Main St',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ]);
+
+    // Define the new data for the client
+    $newClientData = [
+        'name' => 'New Client',
+        'alias' => Str::slug('New Client'),
+        'email' => 'client@example.com',
+        'phone' => '1234567890',
+        'address' => '123 Main St',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ];
+    // Update the client
+    $response = $this->put(route('providers.update', $provider->id), $newClientData);
+
+    // Assert the client was updated successfully
+    $response->assertStatus(302); // Assuming redirect after successful update
+    // Comprobamos que me redirija a la ruta de edición
+    $response->assertRedirect(route('providers.edit', $provider->id));
+    $response->assertSessionHas('success', 'Provider updated successfully.');
+
+    // Assert the client exists in the database
+    $this->assertDatabaseHas('providers', $newClientData);
+});
+
+test('non_administrator_can_update_providers', function () {
+
+    $defaultUser = User::factory()->create();
+    $this->actingAs($defaultUser);
+    // Creamos un nuevo proveedor
+    $provider = Provider::create([
+        'name' => 'Client',
+        'alias' => Str::slug('Client'),
+        'email' => 'client@example.com',
+        'phone' => '1234567890',
+        'address' => '123 Main St',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ]);
+
+    // Define the new data for the client
+    $newClientData = [
+        'name' => 'New Client',
+        'alias' => Str::slug('New Client'),
+        'email' => 'client@example.com',
+        'phone' => '1234567890',
+        'address' => '123 Main St',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ];
+    // Update the client
+    $response = $this->put(route('providers.update', $provider->id), $newClientData);
+
+    // Assert the client was updated successfully
+    $response->assertStatus(403); // Assuming redirect after successful update
+
+    // Assert the client exists in the database
+    $this->assertDatabaseMissing('providers', $newClientData);
+});
+
+test('administrator_can_update_providers_without_phone_address', function () {
+
+    $defaultUser = User::factory()->create();
+    $this->actingAs($defaultUser);
+    // Creamos un nuevo proveedor
+    $provider = Provider::create([
+        'name' => 'Client',
+        'alias' => Str::slug('Client'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ]);
+
+    // Define the new data for the client
+    $newClientData = [
+        'name' => 'New Client',
+        'alias' => Str::slug('New Client'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ];
+    // Update the client
+    $response = $this->put(route('providers.update', $provider->id), $newClientData);
+
+    // Assert the client was updated successfully
+    $response->assertStatus(403); // Assuming redirect after successful update
+
+    // Assert the client exists in the database
+    $this->assertDatabaseMissing('providers', $newClientData);
+});
+
+test('administrator_can_update_providers_without_changes', function () {
+
+    // Creamos un nuevo proveedor
+    $provider = Provider::create([
+        'name' => 'Client',
+        'alias' => Str::slug('Client'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ]);
+
+    // Define the new data for the client
+    $newClientData = [
+        'name' => 'Client',
+        'alias' => Str::slug('Client'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ];
+    // Update the client
+    $response = $this->put(route('providers.update', $provider->id), $newClientData);
+
+    // Assert the client was updated successfully
+    $response->assertStatus(302); // Assuming redirect after successful update
+    // Comprobamos que me redirija a la ruta de edición
+    $response->assertRedirect(route('providers.edit', $provider->id));
+    $response->assertSessionHas('success', 'Provider updated successfully.');
+
+    // Assert the client exists in the database
+    $this->assertDatabaseHas('providers', $newClientData);
+});
+
+test('administrator_can_update_providers_without_required_fields', function () {
+    // Creamos un nuevo proveedor
+    $provider = Provider::create([
+        'name' => 'New Client',
+        'alias' => Str::slug('New Client'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ]);
+
+    // Define the new data for the client
+    $newClientData = [
+        'name' => '',
+        'alias' => '',
+        'email' => '',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ];
+    // Update the client
+    $response = $this->put(route('providers.update', $provider->id), $newClientData);
+
+    // Assert the client exists in the database
+    $this->assertDatabaseMissing('providers', $newClientData);
 });
