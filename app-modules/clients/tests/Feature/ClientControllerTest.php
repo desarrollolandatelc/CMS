@@ -6,6 +6,7 @@ use Modules\PersonTypes\Models\PersonType;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 use Illuminate\Support\Str;
+use Modules\Providers\Models\Provider;
 
 uses(TestCase::class, RefreshDatabase::class);
 
@@ -36,9 +37,6 @@ beforeEach(function () {
     ];
     // Asignamos el tipo de persona al tipo de documento
     $this->documentType = $this->personType->documentTypes()->create($documentType);
-
- 
-
 });
 
 test('an_administrator_can_create_clients_without_discounts_address_or_phone', function () {
@@ -65,6 +63,16 @@ test('an_administrator_can_create_clients_without_discounts_address_or_phone', f
 });
 
 test('an_administrator_can_create_clients_with_discounts_address_and_phone', function () {
+    // Creamos un proveedor
+    $provider = Provider::create([
+        'name' => 'Mi proveedor',
+        'alias' => Str::slug('Mi proveedor'),
+        'email' => 'client@example.com',
+        'person_type_id' => $this->personType->id,
+        'document_type_id' => $this->documentType->id,
+        'document_number' => '123456789',
+        'status' => 1
+    ]);
     // Define the data for the new client
     $clientData = [
         'name' => 'New Client',

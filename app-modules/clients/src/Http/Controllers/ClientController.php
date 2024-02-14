@@ -28,9 +28,7 @@ class ClientController extends Controller
                 ->withInput();
         }
 
-        // Assuming $clientModel is your Client model.
-        // You would need to replace '$clientModel' with the actual model name.
-        Client::create($request->all());
+        Client::create($this->getDiscounts($request));
         return redirect()->route('clients.create')->with('success', 'Client created successfully.');
     }
 
@@ -45,13 +43,29 @@ class ClientController extends Controller
     {
         $client = Client::find($id);
         $validator = $this->validate($request, $id);
+
         if ($validator->fails()) {
             return redirect()->route('clients.edit', $client->id)
                 ->withErrors($validator)
                 ->withInput();
         }
 
-        $client->update($request->all());
+        $client->update($this->getDiscounts($request));
         return redirect()->route('clients.edit', $client->id)->with('success', 'Client updated successfully.');
+    }
+
+    /**
+     * Get discounts from the request and return the updated data array.
+     *
+     * @param Request $request The request object
+     * @return array
+     */
+    private function getDiscounts(Request $request): array
+    {
+        $discounts = $this->discounts($request->discounts);
+        $data = $request->all();
+        $data['discounts'] = $discounts;
+
+        return $data;
     }
 }

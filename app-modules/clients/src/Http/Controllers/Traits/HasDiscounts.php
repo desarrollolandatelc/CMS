@@ -4,20 +4,27 @@
 namespace Modules\Clients\Http\Controllers\Traits;
 
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Validator as Validation;
 
 trait HasDiscounts
 {
 
+
     /**
-     * A description of the entire PHP function.
+     * Permite filtrar cada descuento de un cliente
+     * con el fin de garantizar la integridad de
+     * cada descuento
      *
-     * @param array $data description
+     * @param array $data 
      * @return array
      */
-    protected function discounts(array $data): array
+    protected function discounts(?array $data = null): array
     {
         $discounts = [];
+
+        if (is_null($data)) {
+            return $discounts;
+        }
+
         foreach ($data as $discount) {
             $validator = $this->validateDiscounts($discount);
 
@@ -30,7 +37,14 @@ trait HasDiscounts
         return $discounts;
     }
 
-    private function validateDiscounts(array $data): Validation
+    /**
+     * Validate the discounts array.
+     *
+     * @param array $data The data to be validated
+     * @throws Validation The validation instance
+     * @return Validator The validator instance
+     */
+    private function validateDiscounts(array $data)
     {
         return Validator::make($data, [
             'provider_name' => 'required|exists:providers,name',
