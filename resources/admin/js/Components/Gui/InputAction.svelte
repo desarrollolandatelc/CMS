@@ -2,20 +2,9 @@
     import { Input } from "flowbite-svelte";
     import ModalButton from "./ModalButton.svelte";
 
-    import type { ComponentType } from "svelte";
+    export let value: string = "";
 
-    export let value: { id: number; name: string } = { id: 0, name: "" };
-    export let COMPONENT: ComponentType = null;
-
-    let defaultModal: boolean = false;
-
-    const selected = (event) => {
-        defaultModal = false;
-        value = {
-            id: event.detail.id,
-            name: event.detail.name,
-        };
-    };
+    export let defaultModal: boolean = false;
 </script>
 
 <div class="flex">
@@ -23,14 +12,10 @@
         type="text"
         class="border-l border-t border-b rounded-l-md rounded-r-none"
         disabled
-        value={value?.name}
+        bind:value
         required
     />
-    <ModalButton
-        title="Buscar"
-        modalTitle="Buscar"
-        bind:defaultModal
-        {COMPONENT}
-        on:change={selected}
-    />
+    <ModalButton title="Buscar" modalTitle="Buscar" bind:defaultModal>
+        <slot />
+    </ModalButton>
 </div>

@@ -1,11 +1,9 @@
 <script lang="ts">
-    import { Button, Modal } from "flowbite-svelte";
+    import { Modal } from "flowbite-svelte";
 
-    import type { ComponentType } from "svelte";
     export let title: string = "";
 
     export let defaultModal: boolean = false;
-    export let COMPONENT: ComponentType = null;
     export let modalTitle: string = "";
 </script>
 
@@ -18,5 +16,5 @@
 </button>
 
 <Modal title={modalTitle} bind:open={defaultModal}>
-    <svelte:component this={COMPONENT} on:change />
+    <slot />
 </Modal>

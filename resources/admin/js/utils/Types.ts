@@ -20,3 +20,13 @@ type LinkType = {
     label?: string;
     active?: boolean;
 };
+
+type DiscountFormData = {
+    provider: DiscountProviderData
+    percentage: number
+}
+
+type DiscountProviderData = {
+    id: string
+    name: string
+}
