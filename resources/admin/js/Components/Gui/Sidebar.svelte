@@ -97,7 +97,7 @@
                 <svelte:fragment slot="icon">
                     <BadgeCheckSolid class="w-5 h-5" />
                 </svelte:fragment>
-                <SidebarDropdownItem label="Usuarios" />
+                <SidebarDropdownItem label="Usuarios" href="/admin/users" />
                 <SidebarDropdownItem label="Clientes" href="/admin/clients" />
             </SidebarDropdownWrapper>
 

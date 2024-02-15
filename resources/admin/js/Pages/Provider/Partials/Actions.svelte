@@ -1,23 +1,8 @@
-<script lang="ts">
-    import { router } from "@inertiajs/svelte";
-    import { Button } from "flowbite-svelte";
+<script>
+    import DeleteAction from "../../../Components/Core/DeleteAction.svelte";
     import { toasts, ToastContainer, FlatToast } from "svelte-toasts";
 
     export let data;
-
-    const deleteProvider = () => {
-        const confirm = window.confirm("¿Desea eliminar el proveedor?");
-        if (!confirm) {
-            return;
-        }
-        router.delete(`/admin/providers/${data.id}`, {
-            onSuccess: () => {
-                toasts.success({
-                    description: "Se ha eliminado el proveedor correctamente",
-                });
-            },
-        });
-    };
 </script>
 
 <a
@@ -26,7 +11,7 @@
 >
     Editar
 </a>
-<Button size="xs" color="red" on:click={deleteProvider}>Eliminar</Button>
+<DeleteAction url={route("providers.destroy", data.id)}>Eliminar</DeleteAction>
 <ToastContainer placement="bottom-right" let:data>
     <FlatToast {data} />
 </ToastContainer>

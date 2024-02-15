@@ -1,6 +1,6 @@
 <script>
     import { DropdownItem, Helper, Radio } from "flowbite-svelte";
-    import BulkActionsButton from "../../../Components/Gui/BulkActionsButton.svelte";
+    import BulkActionsButton from "../../../Components/Core/BulkActionsButton.svelte";
     import { TrashBinSolid } from "flowbite-svelte-icons";
     import { router } from "@inertiajs/svelte";
     import { toasts, ToastContainer, FlatToast } from "svelte-toasts";

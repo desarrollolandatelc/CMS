@@ -12,9 +12,9 @@
         Checkbox,
     } from "flowbite-svelte";
     import AuthenticatedLayout from "../../Layouts/AuthenticatedLayout.svelte";
-    import BulkDeleteAction from "../../Components/Core/BulkDeleteActionOption.svelte";
 
     import Pagination from "../../Components/Gui/Pagination.svelte";
+    import BulkDeleteActionOption from "../../Components/Core/BulkDeleteActionOption.svelte";
     import DeleteAction from "../../Components/Core/DeleteAction.svelte";
 
     let selected = [];
@@ -22,16 +22,16 @@
 
     export let paginate: Paginate = null;
     const route = window.route;
-    
+
     const toggleAll = (e) => {
         // Seleccionar todos los ids
-        selected = selectedAll ? paginate.data.map((client) => client.id) : [];
+        selected = selectedAll ? paginate.data.map((user) => user.id) : [];
     };
 </script>
 
 <AuthenticatedLayout>
     <div class="flex justify-between items-center">
-        <Heading tag="h3">Listado de clientes</Heading>
+        <Heading tag="h3">Listado de usuarios</Heading>
         <Button href="/admin/clients/create">Nuevo</Button>
     </div>
 
@@ -39,10 +39,10 @@
         <div class="flex items-center justify-between mb-4">
             <div>
                 {#if selected.length > 1}
-                    <BulkDeleteAction
+                    <BulkDeleteActionOption
                         bind:selected
                         bind:selectedAll
-                        url={route("clients.bulk-destroy")}
+                        url={route("users.bulk-delete")}
                     />
                 {/if}
             </div>
@@ -60,30 +60,26 @@
                 </TableHeadCell>
                 <TableHeadCell>Nombre</TableHeadCell>
                 <TableHeadCell>Correo</TableHeadCell>
-                <TableHeadCell>Teléfono</TableHeadCell>
                 <TableHeadCell>Acciones</TableHeadCell>
             </TableHead>
             <TableBody>
-                {#each paginate.data as client}
+                {#each paginate.data as user}
                     <TableBodyRow>
                         <TableBodyCell>
-                            <Checkbox bind:group={selected} value={client.id}
+                            <Checkbox bind:group={selected} value={user.id}
                             ></Checkbox>
                         </TableBodyCell>
-                        <TableBodyCell>{client.name}</TableBodyCell>
-                        <TableBodyCell>{client.email}</TableBodyCell>
-                        <TableBodyCell>
-                            {client.phone ?? "No disponible"}
-                        </TableBodyCell>
+                        <TableBodyCell>{user.name}</TableBodyCell>
+                        <TableBodyCell>{user.email}</TableBodyCell>
                         <TableBodyCell>
                             <a
-                                href="/admin/clients/{client.id}/edit"
+                                href="/admin/users/{user.id}/edit"
                                 class="font-medium text-primary-600 hover:underline dark:text-primary-500"
                             >
                                 Editar
                             </a>
                             <DeleteAction
-                                url={route("clients.destroy", client.id)}
+                                url={route("users.destroy", user.id)}
                             />
                         </TableBodyCell>
                     </TableBodyRow>

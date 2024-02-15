@@ -1,21 +1,23 @@
 <script>
-    import { DropdownItem, Helper, Radio } from "flowbite-svelte";
-    import BulkActionsButton from "../../../Components/Gui/BulkActionsButton.svelte";
+    import { DropdownItem } from "flowbite-svelte";
+    import BulkActionsButton from "./BulkActionsButton.svelte";
     import { TrashBinSolid } from "flowbite-svelte-icons";
     import { router } from "@inertiajs/svelte";
     import { toasts, ToastContainer, FlatToast } from "svelte-toasts";
 
     export let selected;
     export let selectedAll = false;
+
+    export let url;
     const deleteSelected = () => {
         const confirm = window.confirm(
-            "¿Desea eliminar los clientes seleccionados?",
+            "¿Desea eliminar los registros seleccionados?",
         );
         if (!confirm) {
             return;
         }
         router.post(
-            route("clients.bulk-destroy"),
+            url,
             {
                 ids: selected,
                 _method: "DELETE",
@@ -25,7 +27,7 @@
                     selected = [];
                     toasts.success({
                         description:
-                            "Se han eliminado los clientes seleccionados",
+                            "Se han eliminado los registros seleccionados",
                     });
                     selectedAll = false;
                 },
