@@ -2,6 +2,9 @@
 
 // use Modules\DocumentTypes\Http\Controllers\DocumentTypesController;
 
+use Illuminate\Support\Facades\Route;
+
+
 // Route::get('/document_types', [DocumentTypesController::class, 'index'])->name('document_types.index');
 // Route::get('/document_types/create', [DocumentTypesController::class, 'create'])->name('document_types.create');
 // Route::post('/document_types', [DocumentTypesController::class, 'store'])->name('document_types.store');

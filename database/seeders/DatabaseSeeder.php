@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Modules\PersonTypes\Models\PersonType;
 use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
@@ -36,6 +37,30 @@ class DatabaseSeeder extends Seeder
             'email' => 'developer@mail.com',
             'password' => bcrypt('password123+*'),
             'email_verified_at' => now(),
+        ]);
+
+        $natural = PersonType::create([
+            'name' => 'Persona natural',
+            'alias' => 'persona-natural',
+            'status' => 1
+        ]);
+        $juridica = PersonType::create([
+            'name' => 'Persona jurídica',
+            'alias' => 'persona-juridica',
+            'status' => 1
+        ]);
+
+        // Asignamos al tipo de documento 
+        $natural->documentTypes()->create([
+            'name' => 'Cédula de ciudadanía',
+            'alias' => 'cedula-ciudadania',
+            'status' => 1
+        ]);
+
+        $juridica->documentTypes()->create([
+            'name' => 'NIT',
+            'alias' => 'nit',
+            'status' => 1
         ]);
 
         // Asignamos el rol al usuario

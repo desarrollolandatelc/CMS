@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Modules\Providers\Http\Controllers\ProviderController;
 use Spatie\Permission\Models\Role;
 
 Route::get('/', function () {
@@ -30,6 +31,7 @@ Route::prefix('admin')->group(function () {
     Route::get('roles/get-all-from-api', function () {
         return Role::all();
     })->name('admin.roles.get-all-from-api');
-})->middleware(['auth', 'verified', 'role:administrador|desarrollador'])->name('dashboard');
+
+})->middleware(['auth', 'verified', 'role:administrador|desarrollador']);
 
 require __DIR__ . '/auth.php';

@@ -13,6 +13,19 @@ class ProviderController extends Controller
 {
     use HasValidation;
 
+    /**
+     * Display a listing of the providers.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $providers = Provider::paginate(12);
+        return Inertia::render('Provider/Index', [
+            'providers' => $providers
+        ]);
+    }
+
 
     /**
      * Show the form for creating a new provider.
@@ -35,7 +48,7 @@ class ProviderController extends Controller
         $validator = $this->validate($request);
 
         if ($validator->fails()) {
-            return redirect()->route('clients.create')
+            return redirect()->route('providers.create')
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -43,7 +56,7 @@ class ProviderController extends Controller
         // Assuming $clientModel is your Client model.
         // You would need to replace '$clientModel' with the actual model name.
         Provider::create($request->all());
-        return redirect()->route('clients.create')->with('success', 'Provider created successfully.');
+        return redirect()->route('providers.create')->with('success', 'Provider created successfully.');
     }
 
     /**

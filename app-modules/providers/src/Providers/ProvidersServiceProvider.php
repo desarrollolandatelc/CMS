@@ -9,8 +9,9 @@ class ProvidersServiceProvider extends ServiceProvider
 	public function register()
 	{
 	}
-	
+
 	public function boot()
 	{
+		$this->loadRoutesFrom(__DIR__ . '/../../routes/providers-routes.php');
 	}
 }

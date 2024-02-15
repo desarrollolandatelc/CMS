@@ -16,7 +16,7 @@ beforeEach(function () {
 
     // Creamos un role
     $role = Role::create([
-        'name' => 'administrator',
+        'name' => 'administrador',
     ]);
 
     // Asignamos el role al usuario
@@ -56,7 +56,7 @@ test('an_administrator_can_create_providers_without_address_or_phone', function 
     ];
 
     // Perform the post request to the client registration route
-    $response = $this->post(route('providers.store'), $clientData);
+    $response = $this->actingAs($this->admin)->post(route('providers.store'), $clientData);
     // Assert the client was created successfully
     $response->assertStatus(302); // Assuming redirect after successful creation
     $response->assertSessionHas('success', 'Provider created successfully.');
@@ -460,4 +460,11 @@ test('non_administrator_can_delete_single_providers', function () {
 
     $response->assertStatus(403);
     $this->assertCount(2, Provider::all());
+});
+
+
+test('administrator_can_see_index_screen', function () {
+
+    $response = $this->actingAs($this->admin)->get(route('providers.index'));
+    $response->assertStatus(200);
 });

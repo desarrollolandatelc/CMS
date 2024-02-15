@@ -48,7 +48,7 @@ class HandleInertiaRequests extends Middleware
 
     public function rootView(Request $request): string
     {
-        if ($request->route()->getPrefix() === '/admin' || $request->route()->getPrefix() === 'admin') {
+        if (preg_match('/admin/', $request->route()->getPrefix())) {
             return 'app';
         }
 

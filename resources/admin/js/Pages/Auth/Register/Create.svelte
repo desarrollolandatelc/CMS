@@ -15,7 +15,6 @@
 </script>
 
 <AuthenticatedLayout>
-    {JSON.stringify($form)}
     <Heading tag="h4" class="mb-4">Registrar usuario</Heading>
     <form class="w-full" on:submit|preventDefault={submit}>
         <Inputs {form}></Inputs>

@@ -27,6 +27,7 @@
         "@tinymce/tinymce-svelte": "^2.0.1",
         "laravel-echo": "^1.15.3",
         "pusher-js": "^8.4.0-rc2",
+        "slugify": "^1.6.6",
         "svelte-lazy-image": "^0.5.1"
     }
 }
