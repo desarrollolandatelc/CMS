@@ -14,6 +14,19 @@ class ClientController extends Controller
     use HasValidation, HasDiscounts;
 
     /**
+     * Display a listing of the clients.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $paginate = Client::paginate(12);
+        return Inertia::render('Client/Index', [
+            'paginate' => $paginate
+        ]);
+    }
+
+    /**
      * Show the form for creating a new client.
      *
      * @return \Illuminate\Http\Response

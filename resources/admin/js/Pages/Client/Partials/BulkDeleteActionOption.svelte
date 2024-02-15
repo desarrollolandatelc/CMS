@@ -9,13 +9,13 @@
     export let selectedAll = false;
     const deleteSelected = () => {
         const confirm = window.confirm(
-            "¿Desea eliminar los proveedores seleccionados?",
+            "¿Desea eliminar los clientes seleccionados?",
         );
         if (!confirm) {
             return;
         }
         router.post(
-            route("providers.bulk-destroy"),
+            route("clients.bulk-destroy"),
             {
                 ids: selected,
                 _method: "DELETE",
@@ -25,7 +25,7 @@
                     selected = [];
                     toasts.success({
                         description:
-                            "Se han eliminado los proveedores seleccionados",
+                            "Se han eliminado los clientes seleccionados",
                     });
                     selectedAll = false;
                 },

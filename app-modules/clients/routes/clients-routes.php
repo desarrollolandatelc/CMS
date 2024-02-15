@@ -6,7 +6,7 @@ use Modules\Clients\Http\Controllers\ClientController;
 // Route::get('/clients', [ClientsController::class, 'index'])->name('clients.index');
 // Route::get('/clients/create', [ClientsController::class, 'create'])->name('clients.create');
 
-Route::prefix('admin')->middleware(['auth', 'verified', 'role:administrador|desarrollador'])->group(function () {
+Route::prefix('admin')->middleware(['auth', 'verified', 'web', 'role:administrador|desarrollador'])->group(function () {
     Route::delete('/clients/bulk-delete', [ClientController::class, 'bulkDestroy'])->name('clients.bulk-destroy');
     Route::resource('/clients', ClientController::class);
 });

@@ -5,7 +5,7 @@ use Modules\Providers\Http\Controllers\ProviderController;
 
 Route::prefix('admin')->middleware(['auth', 'web', 'verified', 'role:administrador|desarrollador'])->group(function () {
     Route::delete('providers/bulk-delete', [ProviderController::class, 'bulkDestroy'])->name('providers.bulk-destroy');
-    
+    Route::get('providers/search', [ProviderController::class, 'search'])->name('providers.search');
     Route::resource('providers', ProviderController::class);
 });
 

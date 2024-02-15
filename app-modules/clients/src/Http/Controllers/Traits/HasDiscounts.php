@@ -47,7 +47,7 @@ trait HasDiscounts
     private function validateDiscounts(array $data)
     {
         return Validator::make($data, [
-            'provider_name' => 'required|exists:providers,name',
+            'provider.id' => 'required|exists:providers,id',
             'percentage' => 'required|numeric|min:0|max:100',
         ]);
     }

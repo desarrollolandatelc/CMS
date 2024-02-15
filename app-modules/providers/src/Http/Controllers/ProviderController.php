@@ -118,4 +118,19 @@ class ProviderController extends Controller
         $provider->delete();
         return redirect()->route('providers.index')->with('success', 'Provider deleted successfully.');
     }
+
+
+    /**
+     * Search for providers based on the given query.
+     *
+     * @param Request $request The request data
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $query = $request->get('query');
+        $providers = Provider::where('name', 'like', '%' . $query . '%')->limit(12);
+
+        return response()->json($providers->get());
+    }
 }

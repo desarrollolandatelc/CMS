@@ -76,7 +76,10 @@
                     />
                 </svelte:fragment>
                 <SidebarDropdownItem label="Títulos" />
-                <SidebarDropdownItem label="Proveedores" />
+                <SidebarDropdownItem
+                    label="Proveedores"
+                    href="/admin/providers"
+                />
                 <SidebarDropdownItem label="Marcas" />
                 <SidebarDropdownItem label="Monedas" />
                 <SidebarDropdownItem label="Categorías" />
@@ -95,7 +98,7 @@
                     <BadgeCheckSolid class="w-5 h-5" />
                 </svelte:fragment>
                 <SidebarDropdownItem label="Usuarios" />
-                <SidebarDropdownItem label="Clientes" />
+                <SidebarDropdownItem label="Clientes" href="/admin/clients" />
             </SidebarDropdownWrapper>
 
             <SidebarDropdownWrapper label="Configuración">
