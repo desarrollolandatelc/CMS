@@ -3,7 +3,6 @@
 use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Modules\Brands\Models\Brand;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Str;
 use Modules\Categories\Models\Category;

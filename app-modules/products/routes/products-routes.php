@@ -2,6 +2,14 @@
 
 // use Modules\Products\Http\Controllers\ProductsController;
 
+use Illuminate\Support\Facades\Route;
+use Modules\Products\Http\Controllers\ProductController;
+
+Route::prefix('admin')->middleware(['auth', 'web', 'verified', 'role:administrador|desarrollador'])->group(function () {
+    Route::delete('/products/bulk-delete', [ProductController::class, 'bulkDestroy'])->name('products.bulk-destroy');
+
+    Route::resource('products', ProductController::class);
+});
 // Route::get('/products', [ProductsController::class, 'index'])->name('products.index');
 // Route::get('/products/create', [ProductsController::class, 'create'])->name('products.create');
 // Route::post('/products', [ProductsController::class, 'store'])->name('products.store');
