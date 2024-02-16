@@ -6,7 +6,6 @@
     import Pagination from "../../Components/Gui/Pagination.svelte";
     import Table from "../../Components/Gui/Table.svelte";
     import TableSingleActions from "../../Components/Core/TableSingleActions.svelte";
-    import TableBodyRowFormat from "./Partials/TableBodyRowFormat.svelte";
 
     let selected = [];
     let selectedAll = false;
@@ -17,18 +16,18 @@
 
 <AuthenticatedLayout>
     <div class="flex justify-between items-center">
-        <Heading tag="h3">Listado de clientes</Heading>
-        <Button href="/admin/clients/create">Nuevo</Button>
+        <Heading tag="h3">Listado de campos</Heading>
+        <Button href="/admin/fields/create">Nuevo</Button>
     </div>
 
-    <div class="bg-white dark:bg-gray-800 p-4 my-4 rounded-md border shadow-sm">
+    <div class="bg-white dark:bg-gray-800 p-4 mt-4 rounded-md">
         <div class="flex items-center justify-between mb-4">
             <div>
                 {#if selected.length > 1}
                     <BulkDeleteAction
                         bind:selected
                         bind:selectedAll
-                        url={route("clients.bulk-destroy")}
+                        url={route("fields.bulk-destroy")}
                     />
                 {/if}
             </div>
@@ -41,9 +40,8 @@
             ACTIONS={TableSingleActions}
             bind:selected
             bind:selectedAll
-            editRoute="clients.edit"
-            deleteRoute="clients.destroy"
-            TABLEROWPANEL={TableBodyRowFormat}
+            editRoute="fields.edit"
+            deleteRoute="fields.destroy"
         ></Table>
         <Pagination {paginate}></Pagination>
     </div>

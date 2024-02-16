@@ -10,7 +10,7 @@
 
 <a
     href={route(editRoute, data.id)}
-    class="font-medium text-primary-600 hover:underline dark:text-primary-500"
+    class="font-medium text-primary-600 hover:underline dark:text-primary-500 mr-2"
 >
     Editar
 </a>

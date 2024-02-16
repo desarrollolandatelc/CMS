@@ -17,15 +17,23 @@
 
     export let ACTIONS = null;
 
+    export let TABLEROWPANEL = null;
+
     export let data;
+
+    let openRow = null;
 
     const toggleAll = (e) => {
         // Seleccionar todos los ids
         selected = selectedAll ? data.map((item) => item.id) : [];
     };
+
+    const toggleRow = (i) => {
+        openRow = openRow === i ? null : i;
+    };
 </script>
 
-<Table shadow>
+<Table noborder={true}>
     <TableHead>
         <TableHeadCell>
             <Checkbox on:change={toggleAll} bind:checked={selectedAll} />
@@ -43,7 +51,7 @@
                 </TableBodyCell>
 
                 <TableBodyCell>{item.id}</TableBodyCell>
-                <TableBodyCell>{item.name}</TableBodyCell>
+                <TableBodyCell class="text-blue-700 cursor-pointer hover:underline" on:click={() => toggleRow(item.id)}>{item.name}</TableBodyCell>
                 <TableBodyCell>
                     <svelte:component
                         this={ACTIONS}
@@ -54,6 +62,10 @@
                     />
                 </TableBodyCell>
             </TableBodyRow>
+
+            {#if TABLEROWPANEL && openRow === item.id}
+                <svelte:component this={TABLEROWPANEL} {item} />
+            {/if}
         {/each}
     </TableBody>
 </Table>

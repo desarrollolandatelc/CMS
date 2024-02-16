@@ -112,6 +112,7 @@
                     <CogSolid class="w-5 h-5" />
                 </svelte:fragment>
                 <SidebarDropdownItem label="Sitio" />
+                <SidebarDropdownItem label="Ítem de menú" />
                 <SidebarDropdownItem label="Plantillas" />
             </SidebarDropdownWrapper>
             <SidebarDropdownWrapper label="Publicidad">
