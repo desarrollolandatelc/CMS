@@ -3,16 +3,15 @@
 
     export let editRoute = "";
     export let deleteRoute = "";
-    export let item;
+    export let data;
 
     const route = window.route;
-
 </script>
 
 <a
-    href={route(editRoute, item.id)}
+    href={route(editRoute, data.id)}
     class="font-medium text-primary-600 hover:underline dark:text-primary-500"
 >
     Editar
 </a>
-<DeleteAction url={route(deleteRoute, item.id)} />
+<DeleteAction url={route(deleteRoute, data.id)} />

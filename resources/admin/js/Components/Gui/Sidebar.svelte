@@ -69,6 +69,12 @@
                     <ChartSolid class="w-5 h-5" />
                 </svelte:fragment>
             </SidebarItem>
+            <SidebarDropdownWrapper label="Contenido">
+                <svelte:fragment slot="icon">
+                    <CartPlusAltSolid class="w-5 h-5" />
+                </svelte:fragment>
+                <SidebarDropdownItem label="Artículos" />
+            </SidebarDropdownWrapper>
             <SidebarDropdownWrapper label="E-commerce">
                 <svelte:fragment slot="icon">
                     <ShoppingBagSolid

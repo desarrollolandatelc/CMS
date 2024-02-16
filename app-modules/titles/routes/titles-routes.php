@@ -2,6 +2,12 @@
 
 // use Modules\Titles\Http\Controllers\TitlesController;
 
+use Illuminate\Support\Facades\Route;
+use Modules\Titles\Http\Controllers\TitleController;
+
+Route::prefix('admin')->middleware(['auth', 'web', 'verified', 'role:administrador|desarrollador'])->group(function () {
+    Route::resource('titles', TitleController::class);
+});
 // Route::get('/titles', [TitlesController::class, 'index'])->name('titles.index');
 // Route::get('/titles/create', [TitlesController::class, 'create'])->name('titles.create');
 // Route::post('/titles', [TitlesController::class, 'store'])->name('titles.store');

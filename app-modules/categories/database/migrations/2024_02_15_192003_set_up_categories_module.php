@@ -3,11 +3,11 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class SetUpTitlesModule extends Migration
+class SetUpCategoriesModule extends Migration
 {
 	public function up()
 	{
-		// Schema::create('titles', function(Blueprint $table) {
+		// Schema::create('categories', function(Blueprint $table) {
 		// 	$table->bigIncrements('id');
 		// 	$table->timestamps();
 		// 	$table->softDeletes();
@@ -16,6 +16,6 @@ class SetUpTitlesModule extends Migration
 	
 	public function down()
 	{
-		// Schema::dropIfExists('titles');
+		// Schema::dropIfExists('categories');
 	}
 }
