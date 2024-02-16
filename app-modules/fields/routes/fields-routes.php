@@ -7,7 +7,7 @@ use Modules\Fields\Http\Controllers\FieldController;
 
 Route::prefix('admin')->middleware(['auth', 'web', 'verified', 'role:administrador|desarrollador'])->group(function () {
     Route::delete('/fields/bulk-delete', [FieldController::class, 'bulkDestroy'])->name('fields.bulk-destroy');
-
+    Route::get('fields/search', [FieldController::class, 'search'])->name('fields.search');
     Route::resource('fields', FieldController::class);
 });
 // Route::get('/fields', [FieldsController::class, 'index'])->name('fields.index');

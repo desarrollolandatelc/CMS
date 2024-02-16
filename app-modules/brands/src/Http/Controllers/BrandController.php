@@ -3,6 +3,7 @@
 namespace Modules\Brands\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\Traits\HasSearchable;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Modules\Brands\Http\Controllers\Traits\HasValidation;
@@ -10,7 +11,7 @@ use Modules\Brands\Models\Brand;
 
 class BrandController extends Controller
 {
-    use HasValidation;
+    use HasValidation, HasSearchable;
 
     public function index()
     {

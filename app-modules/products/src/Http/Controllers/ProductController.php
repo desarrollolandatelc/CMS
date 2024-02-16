@@ -5,12 +5,14 @@ namespace Modules\Products\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Modules\Products\Http\Controllers\Traits\HasExtraFields;
+use Modules\Products\Http\Controllers\Traits\HasImages;
 use Modules\Products\Http\Controllers\Traits\HasValidation;
 use Modules\Products\Models\Product;
 
 class ProductController extends Controller
 {
-    use HasValidation;
+    use HasValidation, HasExtraFields, HasImages;
     /**
      * Display a listing of the resource.
      *
@@ -46,7 +48,9 @@ class ProductController extends Controller
         if ($validator->fails()) {
             return redirect()->route('products.create')->withErrors($validator)->withInput();
         }
-        Product::create($validator->validated());
+        $data = $this->getAllData($request);
+
+        Product::create($data);
         return redirect()->route('products.create')->with('success', 'Product created successfully');
     }
 
@@ -64,7 +68,9 @@ class ProductController extends Controller
         if ($validator->fails()) {
             return redirect()->route('products.edit', $product->id)->withErrors($validator)->withInput();
         }
-        $product->update($validator->validated());
+        $data = $this->getAllData($request);
+
+        $product->update($data);
         return redirect()->route('products.edit', $product->id)->with('success', 'Product updated successfully');
     }
 
@@ -78,5 +84,39 @@ class ProductController extends Controller
     {
         $product->delete();
         return redirect()->route('products.index')->with('success', 'Product deleted successfully');
+    }
+
+    private function getAllData(Request $request)
+    {
+        $images = $this->images($request->images);
+        $fields = $this->extraFields($request->fields);
+
+        $data = $request->all();
+        $data['images'] = $images;
+        $data['fields'] = $fields;
+
+        return $data;
+    }
+
+    /**
+     * Get discounts from the request and return the updated data array.
+     *
+     * @param Request $request The request object
+     * @return array
+     */
+    private function getImages(Request $request): array
+    {
+        return $this->images($request->images);
+    }
+
+    /**
+     * Get discounts from the request and return the updated data array.
+     *
+     * @param Request $request The request object
+     * @return array
+     */
+    private function getExtraFields(Request $request): array
+    {
+        return $this->extraFields($request->fields);
     }
 }

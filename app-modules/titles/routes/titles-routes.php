@@ -7,6 +7,7 @@ use Modules\Titles\Http\Controllers\TitleController;
 
 Route::prefix('admin')->middleware(['auth', 'web', 'verified', 'role:administrador|desarrollador'])->group(function () {
     Route::delete('/titles/bulk-delete', [TitleController::class, 'bulkDestroy'])->name('titles.bulk-destroy');
+    Route::get('titles/search', [TitleController::class, 'search'])->name('titles.search');
 
     Route::resource('titles', TitleController::class);
 });

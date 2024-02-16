@@ -3,6 +3,7 @@
 namespace Modules\Titles\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\Traits\HasSearchable;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Modules\Titles\Http\Controllers\Traits\HasValidation;
@@ -10,7 +11,7 @@ use Modules\Titles\Models\Title;
 
 class TitleController extends Controller
 {
-    use HasValidation;
+    use HasValidation, HasSearchable;
     public function index()
     {
         $paginate = Title::paginate(12);

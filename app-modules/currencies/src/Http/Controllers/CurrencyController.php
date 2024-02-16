@@ -3,6 +3,7 @@
 namespace Modules\Currencies\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\Traits\HasSearchable;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Modules\Currencies\Http\Controllers\Traits\HasValidation;
@@ -10,7 +11,7 @@ use Modules\Currencies\Models\Currency;
 
 class CurrencyController extends Controller
 {
-    use HasValidation;
+    use HasValidation, HasSearchable;
     public function index()
     {
         $paginate = Currency::paginate(12);
@@ -68,5 +69,12 @@ class CurrencyController extends Controller
     {
         $currency->delete();
         return redirect()->route('currencies.index')->with('success', 'Currency deleted successfully.');
+    }
+
+    public function getAllFromApi()
+    {
+
+        $currencies = Currency::all();
+        return response()->json($currencies);
     }
 }

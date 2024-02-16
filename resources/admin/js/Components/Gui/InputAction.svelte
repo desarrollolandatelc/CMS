@@ -7,7 +7,7 @@
     export let defaultModal: boolean = false;
 </script>
 
-<div class="flex">
+<div class="flex mt-1">
     <Input
         type="text"
         class="border-l border-t border-b rounded-l-md rounded-r-none"

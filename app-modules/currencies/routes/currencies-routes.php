@@ -7,7 +7,8 @@ use Modules\Currencies\Http\Controllers\CurrencyController;
 
 Route::prefix('admin')->middleware(['auth', 'web', 'verified', 'role:administrador|desarrollador'])->group(function () {
     Route::delete('/currencies/bulk-delete', [CurrencyController::class, 'bulkDestroy'])->name('currencies.bulk-destroy');
-
+    Route::get('currencies/search', [CurrencyController::class, 'search'])->name('currencies.search');
+    Route::get('currencies/get-all-from-api', [CurrencyController::class, 'getAllFromApi'])->name('currencies.get-all-from-api');
     Route::resource('currencies', CurrencyController::class);
 });
 // Route::get('/currencies', [CurrenciesController::class, 'index'])->name('currencies.index');

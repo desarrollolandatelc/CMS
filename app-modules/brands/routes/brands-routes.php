@@ -7,7 +7,7 @@ use Modules\Brands\Http\Controllers\BrandController;
 
 Route::prefix('admin')->middleware(['auth', 'web', 'verified', 'role:administrador|desarrollador'])->group(function () {
     Route::delete('/brands/bulk-delete', [BrandController::class, 'bulkDestroy'])->name('brands.bulk-destroy');
-
+    Route::get('brands/search', [BrandController::class, 'search'])->name('brands.search');
     Route::resource('brands', BrandController::class);
 });
 // Route::get('/brands', [BrandsController::class, 'index'])->name('brands.index');

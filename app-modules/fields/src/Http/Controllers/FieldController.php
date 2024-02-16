@@ -3,6 +3,7 @@
 namespace Modules\Fields\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\Traits\HasSearchable;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Modules\Fields\Http\Controllers\Traits\HasValidation;
@@ -10,7 +11,7 @@ use Modules\Fields\Models\Field;
 
 class FieldController extends Controller
 {
-    use HasValidation;
+    use HasValidation, HasSearchable;
     public function index()
     {
         $paginate = Field::paginate(12);
