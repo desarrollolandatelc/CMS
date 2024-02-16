@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->middleware('guest')->group(function () {
@@ -56,6 +57,15 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::prefix('admin')->middleware(['auth', 'verified', 'role:administrador|desarrollador'])->group(function () {
+    Route::get('users', [UserController::class, 'index'])
+        ->name('users.index');
+
+    Route::delete('user/{user}', [UserController::class, 'destroy'])
+        ->name('users.destroy');
+
+    Route::delete('users/bulk-delete', [UserController::class, 'bulkDestroy'])
+        ->name('users.bulk-delete');
+
     Route::get('user/register', [RegisteredUserController::class, 'create'])
         ->name('register');
 

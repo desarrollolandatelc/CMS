@@ -37,7 +37,8 @@
             <InputAction value={detail.provider.name} bind:defaultModal>
                 <WindowTable
                     COMPONENT={Table}
-                    url={route("providers.search")}
+                    searchRoute="providers.search"
+                    table="providers"
                     on:change={selected}
                 ></WindowTable>
             </InputAction>

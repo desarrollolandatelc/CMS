@@ -32,7 +32,7 @@
 <AuthenticatedLayout>
     <div class="flex justify-between items-center">
         <Heading tag="h3">Listado de usuarios</Heading>
-        <Button href="/admin/clients/create">Nuevo</Button>
+        <Button href="/admin/user/register">Nuevo</Button>
     </div>
 
     <div class="bg-white dark:bg-gray-800 p-4 mt-4 rounded-md">
@@ -72,12 +72,6 @@
                         <TableBodyCell>{user.name}</TableBodyCell>
                         <TableBodyCell>{user.email}</TableBodyCell>
                         <TableBodyCell>
-                            <a
-                                href="/admin/users/{user.id}/edit"
-                                class="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                            >
-                                Editar
-                            </a>
                             <DeleteAction
                                 url={route("users.destroy", user.id)}
                             />

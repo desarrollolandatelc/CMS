@@ -3,6 +3,7 @@
 namespace Modules\Clients\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\Traits\HasSearchable;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Modules\Clients\Http\Controllers\Traits\HasDiscounts;
@@ -11,7 +12,8 @@ use Modules\Providers\Http\Controllers\Traits\HasValidation;
 
 class ClientController extends Controller
 {
-    use HasValidation, HasDiscounts;
+    use HasValidation, HasDiscounts, HasSearchable;
+
 
     /**
      * Display a listing of the clients.

@@ -3,6 +3,7 @@
 namespace Modules\Providers\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\Traits\HasSearchable;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
@@ -11,7 +12,7 @@ use Modules\Providers\Models\Provider;
 
 class ProviderController extends Controller
 {
-    use HasValidation;
+    use HasValidation, HasSearchable;
 
     /**
      * Display a listing of the providers.
@@ -117,20 +118,5 @@ class ProviderController extends Controller
         $provider = Provider::find($id);
         $provider->delete();
         return redirect()->route('providers.index')->with('success', 'Provider deleted successfully.');
-    }
-
-
-    /**
-     * Search for providers based on the given query.
-     *
-     * @param Request $request The request data
-     * @return \Illuminate\Http\Response
-     */
-    public function search(Request $request)
-    {
-        $query = $request->get('query');
-        $providers = Provider::where('name', 'like', '%' . $query . '%')->limit(12);
-
-        return response()->json($providers->get());
     }
 }

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
+use Modules\Clients\Models\Client;
 
 class RegisteredUserController extends Controller
 {
@@ -36,6 +37,7 @@ class RegisteredUserController extends Controller
             'role' => 'required|exists:roles,name',
             'status' => 'required|boolean',
         ]);
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -44,6 +46,13 @@ class RegisteredUserController extends Controller
 
         // Asignamos el role de usuario asignado por el administrador
         $user->assignRole($request->role);
+
+        // Si el usuario tiene un cliente asociado, le asignamos el usuario
+        if ($request->client) {
+            $client = Client::find($request->client['id']);
+            $client->user()->associate($user);
+            $client->save();
+        }
 
         event(new Registered($user));
 

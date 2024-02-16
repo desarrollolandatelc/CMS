@@ -1,32 +1,17 @@
 <script lang="ts">
-    import {
-        Table,
-        TableHead,
-        TableHeadCell,
-        TableBodyRow,
-        TableBodyCell,
-        TableBody,
-        Heading,
-        Button,
-        Input,
-        Checkbox,
-    } from "flowbite-svelte";
+    import { Heading, Button, Input, Checkbox } from "flowbite-svelte";
     import AuthenticatedLayout from "../../Layouts/AuthenticatedLayout.svelte";
     import BulkDeleteAction from "../../Components/Core/BulkDeleteActionOption.svelte";
 
     import Pagination from "../../Components/Gui/Pagination.svelte";
-    import DeleteAction from "../../Components/Core/DeleteAction.svelte";
+    import Table from "../../Components/Gui/Table.svelte";
+    import TableSingleActions from "../../Components/Core/TableSingleActions.svelte";
 
     let selected = [];
     let selectedAll = false;
 
     export let paginate: Paginate = null;
     const route = window.route;
-    
-    const toggleAll = (e) => {
-        // Seleccionar todos los ids
-        selected = selectedAll ? paginate.data.map((client) => client.id) : [];
-    };
 </script>
 
 <AuthenticatedLayout>
@@ -50,46 +35,14 @@
                 <Input placeholder="Buscar..."></Input>
             </div>
         </div>
-        <Table shadow>
-            <TableHead>
-                <TableHeadCell>
-                    <Checkbox
-                        on:change={toggleAll}
-                        bind:checked={selectedAll}
-                    />
-                </TableHeadCell>
-                <TableHeadCell>Nombre</TableHeadCell>
-                <TableHeadCell>Correo</TableHeadCell>
-                <TableHeadCell>Teléfono</TableHeadCell>
-                <TableHeadCell>Acciones</TableHeadCell>
-            </TableHead>
-            <TableBody>
-                {#each paginate.data as client}
-                    <TableBodyRow>
-                        <TableBodyCell>
-                            <Checkbox bind:group={selected} value={client.id}
-                            ></Checkbox>
-                        </TableBodyCell>
-                        <TableBodyCell>{client.name}</TableBodyCell>
-                        <TableBodyCell>{client.email}</TableBodyCell>
-                        <TableBodyCell>
-                            {client.phone ?? "No disponible"}
-                        </TableBodyCell>
-                        <TableBodyCell>
-                            <a
-                                href="/admin/clients/{client.id}/edit"
-                                class="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                            >
-                                Editar
-                            </a>
-                            <DeleteAction
-                                url={route("clients.destroy", client.id)}
-                            />
-                        </TableBodyCell>
-                    </TableBodyRow>
-                {/each}
-            </TableBody>
-        </Table>
+        <Table
+            data={paginate.data}
+            ACTIONS={TableSingleActions}
+            bind:selected
+            bind:selectedAll
+            editRoute="clients.edit"
+            deleteRoute="clients.destroy"
+        ></Table>
         <Pagination {paginate}></Pagination>
     </div>
 </AuthenticatedLayout>

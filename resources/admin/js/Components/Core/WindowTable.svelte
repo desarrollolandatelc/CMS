@@ -6,7 +6,8 @@
     let data = [];
 
     export let COMPONENT;
-    export let url;
+    export let searchRoute;
+    export let table;
 
     $: if (query.length > 2) {
         searchData();
@@ -16,7 +17,12 @@
 
     const searchData = () => {
         axios
-            .get(`${url}?query=${query}`)
+            .get(
+                route(searchRoute, {
+                    query: query,
+                    table: table,
+                }),
+            )
             .then((response) => {
                 data = response.data;
             })
