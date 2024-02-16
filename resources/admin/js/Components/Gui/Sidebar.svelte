@@ -81,15 +81,15 @@
                         class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                     />
                 </svelte:fragment>
-                <SidebarDropdownItem label="Títulos" />
+                <SidebarDropdownItem label="Títulos" href="/admin/titles" />
                 <SidebarDropdownItem
                     label="Proveedores"
                     href="/admin/providers"
                 />
-                <SidebarDropdownItem label="Marcas" />
-                <SidebarDropdownItem label="Monedas" />
+                <SidebarDropdownItem label="Marcas" href="/admin/brands" />
+                <SidebarDropdownItem label="Monedas" href="/admin/currencies" />
                 <SidebarDropdownItem label="Categorías" />
-                <SidebarDropdownItem label="Campos" />
+                <SidebarDropdownItem label="Campos" href="/admin/fields" />
                 <SidebarDropdownItem label="Productos" />
             </SidebarDropdownWrapper>
             <SidebarDropdownWrapper label="Ventas">

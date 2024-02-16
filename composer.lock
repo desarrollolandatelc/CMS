@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ccbaa2b8811033d2fd1fd26941f3ac0c",
+    "content-hash": "2d589f73ef5bd44a51db67f89046af53",
     "packages": [
         {
             "name": "brick/math",
@@ -1895,12 +1895,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "cb77035c37dd910eccbca6c9c01bce4597910f38"
+                "reference": "b9c541a765cc3ebdf963a3d59f2cd16b6c2e6786"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/cb77035c37dd910eccbca6c9c01bce4597910f38",
-                "reference": "cb77035c37dd910eccbca6c9c01bce4597910f38",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/b9c541a765cc3ebdf963a3d59f2cd16b6c2e6786",
+                "reference": "b9c541a765cc3ebdf963a3d59f2cd16b6c2e6786",
                 "shasum": ""
             },
             "require": {
@@ -2091,7 +2091,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-02-14T09:50:45+00:00"
+            "time": "2024-02-15T15:39:31+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -2737,6 +2737,70 @@
             "time": "2024-01-28T23:22:08+00:00"
         },
         {
+            "name": "modules/brands",
+            "version": "1.0",
+            "dist": {
+                "type": "path",
+                "url": "app-modules/brands",
+                "reference": "21929d96f1eb2c16e47a2b37cba0d4e0b3022ba4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Modules\\Brands\\Providers\\BrandsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Modules\\Brands\\": "src/",
+                    "Modules\\Brands\\Tests\\": "tests/",
+                    "Modules\\Brands\\Database\\Factories\\": "database/factories/",
+                    "Modules\\Brands\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "modules/categories",
+            "version": "1.0",
+            "dist": {
+                "type": "path",
+                "url": "app-modules/categories",
+                "reference": "4d0d672b14a5389f92e6b0a8d6813122b5b6e85d"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Modules\\Categories\\Providers\\CategoriesServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Modules\\Categories\\": "src/",
+                    "Modules\\Categories\\Tests\\": "tests/",
+                    "Modules\\Categories\\Database\\Factories\\": "database/factories/",
+                    "Modules\\Categories\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
             "name": "modules/clients",
             "version": "1.0",
             "dist": {
@@ -2758,6 +2822,38 @@
                     "Modules\\Clients\\Tests\\": "tests/",
                     "Modules\\Clients\\Database\\Factories\\": "database/factories/",
                     "Modules\\Clients\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "modules/currencies",
+            "version": "1.0",
+            "dist": {
+                "type": "path",
+                "url": "app-modules/currencies",
+                "reference": "9c771e7b2707012bf287ba7c6fa9247993d53950"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Modules\\Currencies\\Providers\\CurrenciesServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Modules\\Currencies\\": "src/",
+                    "Modules\\Currencies\\Tests\\": "tests/",
+                    "Modules\\Currencies\\Database\\Factories\\": "database/factories/",
+                    "Modules\\Currencies\\Database\\Seeders\\": "database/seeders/"
                 }
             },
             "license": [
@@ -2801,6 +2897,38 @@
             }
         },
         {
+            "name": "modules/fields",
+            "version": "1.0",
+            "dist": {
+                "type": "path",
+                "url": "app-modules/fields",
+                "reference": "a5ef2966c2af00349e64d2d8218d6887f550beed"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Modules\\Fields\\Providers\\FieldsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Modules\\Fields\\": "src/",
+                    "Modules\\Fields\\Tests\\": "tests/",
+                    "Modules\\Fields\\Database\\Factories\\": "database/factories/",
+                    "Modules\\Fields\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
             "name": "modules/person_types",
             "version": "1.0",
             "dist": {
@@ -2822,6 +2950,38 @@
                     "Modules\\PersonTypes\\Tests\\": "tests/",
                     "Modules\\PersonTypes\\Database\\Factories\\": "database/factories/",
                     "Modules\\PersonTypes\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "modules/products",
+            "version": "1.0",
+            "dist": {
+                "type": "path",
+                "url": "app-modules/products",
+                "reference": "ec2ff28ad7adf9849c7fc90b8ded3fa6501a0f9d"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Modules\\Products\\Providers\\ProductsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Modules\\Products\\": "src/",
+                    "Modules\\Products\\Tests\\": "tests/",
+                    "Modules\\Products\\Database\\Factories\\": "database/factories/",
+                    "Modules\\Products\\Database\\Seeders\\": "database/seeders/"
                 }
             },
             "license": [

@@ -16,7 +16,7 @@
 
 <AuthenticatedLayout>
     <div class="flex justify-between items-center">
-        <Heading tag="h3">Listado de títulos</Heading>
+        <Heading tag="h3">Listado de marcas</Heading>
         <Button href="/admin/brands/create">Nuevo</Button>
     </div>
 

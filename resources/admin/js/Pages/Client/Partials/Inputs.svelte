@@ -101,11 +101,11 @@
                             disabled={true}
                             placeholder="Este campo se genera automáticamente"
                             autofocus
-                            autocomplete="name"
+                            autocomplete="alias"
                         />
-                        {#if $form.errors.name}
+                        {#if $form.errors.alias}
                             <Helper color="red" class="mt-2">
-                                {$form.errors.name}
+                                {$form.errors.alias}
                             </Helper>
                         {/if}
                     </div>

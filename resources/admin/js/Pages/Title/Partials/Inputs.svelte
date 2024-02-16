@@ -9,7 +9,16 @@
         Toggle,
     } from "flowbite-svelte";
 
+    import slugify from "slugify";
+
+
     export let form;
+
+    $: if ($form.name && $form.name.length > 0) {
+        $form.alias = slugify($form.name);
+    } else {
+        $form.alias = null;
+    }
 </script>
 
 <div class="grid md:grid-cols-3 gap-2">
@@ -36,7 +45,7 @@
                     {/if}
                 </div>
                 <div class="w-full">
-                    <Label for="name">
+                    <Label for="alias">
                         Alias <sup class="text-red-600">*</sup>
                     </Label>
                     <Input
@@ -48,11 +57,11 @@
                         disabled={true}
                         placeholder="Este campo se genera automáticamente"
                         autofocus
-                        autocomplete="name"
+                        autocomplete="alias"
                     />
-                    {#if $form.errors.name}
+                    {#if $form.errors.alias}
                         <Helper color="red" class="mt-2">
-                            {$form.errors.name}
+                            {$form.errors.alias}
                         </Helper>
                     {/if}
                 </div>
@@ -76,7 +85,7 @@
 
 <div class="flex items-center mt-4">
     <Button type="submit">Registrar</Button>
-    <Button href="/admin/clients" color="alternative" class="ml-4">
+    <Button href="/admin/titles" color="alternative" class="ml-4">
         Cancelar
     </Button>
 </div>

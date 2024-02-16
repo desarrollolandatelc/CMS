@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Heading, Button, Input, Checkbox } from "flowbite-svelte";
+    import { Heading, Button, Input } from "flowbite-svelte";
     import AuthenticatedLayout from "../../Layouts/AuthenticatedLayout.svelte";
     import BulkDeleteAction from "../../Components/Core/BulkDeleteActionOption.svelte";
 

@@ -2,6 +2,14 @@
 
 // use Modules\Fields\Http\Controllers\FieldsController;
 
+use Illuminate\Support\Facades\Route;
+use Modules\Fields\Http\Controllers\FieldController;
+
+Route::prefix('admin')->middleware(['auth', 'web', 'verified', 'role:administrador|desarrollador'])->group(function () {
+    Route::delete('/fields/bulk-delete', [FieldController::class, 'bulkDestroy'])->name('fields.bulk-destroy');
+
+    Route::resource('fields', FieldController::class);
+});
 // Route::get('/fields', [FieldsController::class, 'index'])->name('fields.index');
 // Route::get('/fields/create', [FieldsController::class, 'create'])->name('fields.create');
 // Route::post('/fields', [FieldsController::class, 'store'])->name('fields.store');

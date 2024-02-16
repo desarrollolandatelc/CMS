@@ -83,7 +83,7 @@ test('an_administrator_can_create_clients_with_discounts_address_and_phone', fun
         'address' => '123 Main St',
         'discounts' => [
             [
-                'provider_name' => 'Mi proveedor',
+                'provider' => ['id' => $provider->id, 'name' => 'Mi proveedor'],
                 'percentage' => 10
             ]
         ],
@@ -92,7 +92,6 @@ test('an_administrator_can_create_clients_with_discounts_address_and_phone', fun
         'document_number' => '123456789',
         'status' => 1
     ];
-
     // Perform the post request to the client registration route
     $response = $this->actingAs($this->admin)->post(route('clients.store'), $clientData);
     // Assert the client was created successfully
@@ -108,7 +107,7 @@ test('an_administrator_can_create_clients_with_discounts_address_and_phone', fun
         'address' => '123 Main St',
         'discounts' => json_encode([
             [
-                'provider_name' => 'Mi proveedor',
+                'provider' => ['id' => $provider->id, 'name' => 'Mi proveedor'],
                 'percentage' => 10
             ]
         ]),

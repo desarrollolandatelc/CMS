@@ -19,6 +19,7 @@ trait HasDiscounts
      */
     protected function discounts(?array $data = null): array
     {
+
         $discounts = [];
 
         if (is_null($data)) {
