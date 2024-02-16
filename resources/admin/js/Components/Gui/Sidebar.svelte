@@ -73,7 +73,7 @@
                 <svelte:fragment slot="icon">
                     <CartPlusAltSolid class="w-5 h-5" />
                 </svelte:fragment>
-                <SidebarDropdownItem label="Artículos" />
+                <SidebarDropdownItem label="Artículos" href="/admin/articles" />
             </SidebarDropdownWrapper>
             <SidebarDropdownWrapper label="E-commerce">
                 <svelte:fragment slot="icon">

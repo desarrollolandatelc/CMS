@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2d589f73ef5bd44a51db67f89046af53",
+    "content-hash": "2df49345ebffece82eaf9572e0b74a94",
     "packages": [
         {
             "name": "brick/math",
@@ -1895,12 +1895,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "b9c541a765cc3ebdf963a3d59f2cd16b6c2e6786"
+                "reference": "91159cbddf95a31da3186255735dca5dfcb64c8b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/b9c541a765cc3ebdf963a3d59f2cd16b6c2e6786",
-                "reference": "b9c541a765cc3ebdf963a3d59f2cd16b6c2e6786",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/91159cbddf95a31da3186255735dca5dfcb64c8b",
+                "reference": "91159cbddf95a31da3186255735dca5dfcb64c8b",
                 "shasum": ""
             },
             "require": {
@@ -2091,7 +2091,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-02-15T15:39:31+00:00"
+            "time": "2024-02-16T17:41:00+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -2735,6 +2735,38 @@
                 }
             ],
             "time": "2024-01-28T23:22:08+00:00"
+        },
+        {
+            "name": "modules/articles",
+            "version": "1.0",
+            "dist": {
+                "type": "path",
+                "url": "app-modules/articles",
+                "reference": "e91cbf367a94b5a5c6f33d9845f5eaf5076ff208"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Modules\\Articles\\Providers\\ArticlesServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Modules\\Articles\\": "src/",
+                    "Modules\\Articles\\Tests\\": "tests/",
+                    "Modules\\Articles\\Database\\Factories\\": "database/factories/",
+                    "Modules\\Articles\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
         },
         {
             "name": "modules/brands",
