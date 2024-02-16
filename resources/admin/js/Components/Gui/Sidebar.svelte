@@ -88,7 +88,10 @@
                 />
                 <SidebarDropdownItem label="Marcas" href="/admin/brands" />
                 <SidebarDropdownItem label="Monedas" href="/admin/currencies" />
-                <SidebarDropdownItem label="Categorías" />
+                <SidebarDropdownItem
+                    label="Categorías"
+                    href="/admin/categories"
+                />
                 <SidebarDropdownItem label="Campos" href="/admin/fields" />
                 <SidebarDropdownItem label="Productos" />
             </SidebarDropdownWrapper>
