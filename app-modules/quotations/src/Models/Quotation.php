@@ -5,11 +5,12 @@ namespace Modules\Quotations\Models;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Clients\Models\Client;
 
 class Quotation extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'user_id',
@@ -22,6 +23,8 @@ class Quotation extends Model
     {
         return [
             'details' => 'array',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime:Y-m-d H:00',
         ];
     }
 

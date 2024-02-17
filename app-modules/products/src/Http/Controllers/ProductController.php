@@ -123,7 +123,7 @@ class ProductController extends Controller
     public function search(Request $request)
     {
         $querySearch = $request->get('query');
-        $products = Product::with(['title', 'provider'])->whereHas('title', function ($query) use ($querySearch) {
+        $products = Product::with(['title', 'provider', 'brand', 'category'])->whereHas('title', function ($query) use ($querySearch) {
             $query->where('name', 'like', '%' . $querySearch . '%');
         })->orWhere('barcode', 'like', '%' . $querySearch . '%')->limit(5)->get();
         return response()->json($products);

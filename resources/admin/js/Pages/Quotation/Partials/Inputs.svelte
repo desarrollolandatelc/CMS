@@ -6,8 +6,12 @@
     import Client from "./Client/Client.svelte";
     import Seller from "./User/Seller.svelte";
     import ItemForm from "./ItemForm.svelte";
+    import SavedItemForm from "./SavedItemForm.svelte";
+
+    import { onMount } from "svelte";
 
     export let form;
+    let repeaterComponent = null;
 
     let statusAvailable = {
         pending: "Pendiente",
@@ -22,12 +26,20 @@
     });
 
     $: subtotal = $form.details.reduce(
-        (total, item) => total + parseFloat(item.price) * item.quantity,
+        (total, item) =>
+            total + item.price * item.quantity * (1 - item.discount / 100),
         0,
     );
+
+    onMount(() => {
+        if ($form.id > 0) {
+            repeaterComponent = SavedItemForm;
+        } else {
+            repeaterComponent = ItemForm;
+        }
+    });
 </script>
 
-{JSON.stringify($form)}
 <div class="grid md:grid-cols-3 gap-2">
     <div class="md:col-span-2">
         <Card size="xl">
@@ -72,7 +84,7 @@
     <div class="md:col-span-1">
         <Card size="xl">
             <Heading tag="h4" class="border-b mb-4">Estado</Heading>
-            {#if $form.id > 0 && $form.props.role === "administrador"}
+            {#if $form.id > 0 && $page.props.auth.role === "administrador" && $form.status === "pending"}
                 <Select bind:value={$form.status}>
                     <option value="pending">Pendiente</option>
                     <option value="accepted">Aceptado</option>
@@ -86,7 +98,12 @@
     {#if $form.user_id > 0 && $form.client_id > 0}
         <div class="md:col-span-full">
             <Card size="xl">
-                <Repeater COMPONENT={ItemForm} bind:values={$form.details} />
+                <Repeater
+                    COMPONENT={repeaterComponent}
+                    bind:values={$form.details}
+                    hasDeletedButton={$form.id > 0 ? false : true}
+                    hasAddItemButton={$form.id > 0 ? false : true}
+                />
             </Card>
         </div>
     {/if}

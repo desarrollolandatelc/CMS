@@ -6,6 +6,7 @@
     import Pagination from "../../Components/Gui/Pagination.svelte";
     import Table from "../../Components/Gui/Table.svelte";
     import TableSingleActions from "../../Components/Core/TableSingleActions.svelte";
+    import IndexBodyTableCells from "./Partials/IndexBodyTableCells.svelte";
 
     let selected = [];
     let selectedAll = false;
@@ -35,7 +36,13 @@
                 <Input placeholder="Buscar..."></Input>
             </div>
         </div>
-        <Table data={paginate.data} bind:selected bind:selectedAll></Table>
+        <Table
+            BODY_FORMAT_TABLE={IndexBodyTableCells}
+            headerLabel={["Cliente", "Vendedor", "Estatus", "Fecha"]}
+            data={paginate.data}
+            bind:selected
+            bind:selectedAll
+        ></Table>
         <Pagination {paginate}></Pagination>
     </div>
 </AuthenticatedLayout>

@@ -18,7 +18,7 @@
     });
 
     const submit = () => {
-        $form.put(route("quotations.update", client.id), {
+        $form.put(route("quotations.update", quotation.id), {
             onSuccess: () => {
                 toasts.success({
                     description: "Cotización actualizada con éxito",

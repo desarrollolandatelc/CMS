@@ -22,7 +22,7 @@
 <Label for="client" class="block w-full">
     Cliente <sup class="text-red-600">*</sup>
 </Label>
-{#if !$page.props.auth.client}
+{#if !$page.props.auth.client && !$form.client?.name}
     <InputAction value={$form.client?.name} bind:defaultModal>
         <SearchSolid slot="button-title" />
         <WindowTable
@@ -32,4 +32,6 @@
             on:change={selected}
         ></WindowTable>
     </InputAction>
+{:else}
+    <span>{$form.client?.name}</span>
 {/if}

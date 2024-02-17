@@ -5,15 +5,16 @@ namespace Modules\Quotations\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Modules\Quotations\Http\Controllers\Traits\HasDetails;
 use Modules\Quotations\Http\Controllers\Traits\HasValidation;
 use Modules\Quotations\Models\Quotation;
 
 class QuotationController extends Controller
 {
-    use HasValidation;
+    use HasValidation, HasDetails;
     public function index()
     {
-        $paginate = Quotation::paginate(12);
+        $paginate = Quotation::with('client', 'user')->paginate(12);
         return Inertia::render('Quotation/Index', [
             'paginate' => $paginate
         ]);
@@ -30,7 +31,12 @@ class QuotationController extends Controller
         if ($validator->fails()) {
             return redirect()->route('quotations.create')->withErrors($validator)->withInput();
         }
-        Quotation::create($request->all());
+        $data = $request->all();
+
+        $details = $this->details($data);
+        $data['details'] = $details;
+
+        Quotation::create($data);
         return redirect()->route('quotations.create')->with('success', 'Quotation created successfully');
     }
 
@@ -48,7 +54,8 @@ class QuotationController extends Controller
         if ($validator->fails()) {
             return redirect()->route('quotations.edit', $quotation)->withErrors($validator)->withInput();
         }
-        $quotation->update($request->all());
+        $dataToUpdate = $request->except('details');
+        $quotation->update($dataToUpdate);
         return redirect()->route('quotations.edit', $quotation)->with('success', 'Quotation updated successfully');
     }
 

@@ -6,10 +6,6 @@
     export let form;
 
     let users = [];
-    const selected = (event) => {
-        $form.user.name = event.detail.name;
-        defaultModal = false;
-    };
 
     const searchSellers = () => {
         axios
@@ -30,13 +26,12 @@
 <Label for="client" class="block w-full">
     Vendedor <sup class="text-red-600">*</sup>
 </Label>
-<Select
-    bind:value={$form.user_id}
-    id="user_id"
-    name="user_id"
-    on:change={selected}
->
-    {#each users as user}
-        <option value={user.id}>{user.name}</option>
-    {/each}
-</Select>
+{#if $form.status === "pending"}
+    <Select bind:value={$form.user_id} id="user_id" name="user_id">
+        {#each users as user}
+            <option value={user.id}>{user.name}</option>
+        {/each}
+    </Select>
+{:else}
+    <span>{$form.user?.name}</span>
+{/if}
