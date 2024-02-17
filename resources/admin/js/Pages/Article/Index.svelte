@@ -6,6 +6,7 @@
     import Pagination from "../../Components/Gui/Pagination.svelte";
     import Table from "../../Components/Gui/Table.svelte";
     import TableSingleActions from "../../Components/Core/TableSingleActions.svelte";
+    import IndexBodyTableCells from "./Partials/IndexBodyTableCells.svelte";
 
     let selected = [];
     let selectedAll = false;
@@ -37,11 +38,10 @@
         </div>
         <Table
             data={paginate.data}
-            ACTIONS={TableSingleActions}
+            headerLabel={["Nombre", "Estado"]}
+            BODY_FORMAT_TABLE={IndexBodyTableCells}
             bind:selected
             bind:selectedAll
-            editRoute="articles.edit"
-            deleteRoute="articles.destroy"
         ></Table>
         <Pagination {paginate}></Pagination>
     </div>
