@@ -5,7 +5,7 @@
     import WindowTable from "../../../Components/Core/WindowTable.svelte";
     import { client_id } from "./helper";
     import CalcTotal from "./CalcTotal.svelte";
-    import TableFormat from "./TableFormat.svelte";
+    import TableFormat from "./Product/TableFormat.svelte";
     import ModalButton from "../../../Components/Gui/ModalButton.svelte";
     import { SearchSolid } from "flowbite-svelte-icons";
 

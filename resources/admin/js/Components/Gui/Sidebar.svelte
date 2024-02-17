@@ -56,7 +56,7 @@
 <Sidebar
     class={drawerHidden ? "hidden" : ""}
     asideClass="fixed inset-0 z-30 flex-none h-full w-64 lg:h-auto lg:overflow-y-visible 
-    lg:pt-20 lg:-mt-2 lg:block"
+    lg:pt-20 lg:-mt-2 lg:block bg-white"
 >
     <SidebarWrapper
         divClass="overflow-y-auto px-4 pt-20 lg:pt-4 h-full

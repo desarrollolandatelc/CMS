@@ -60,6 +60,9 @@ Route::prefix('admin')->middleware(['auth', 'verified', 'role:administrador|desa
     Route::get('users', [UserController::class, 'index'])
         ->name('users.index');
 
+    Route::get('users/search', [UserController::class, 'search'])
+        ->name('users.search');
+
     Route::delete('user/{user}', [UserController::class, 'destroy'])
         ->name('users.destroy');
 
@@ -68,6 +71,12 @@ Route::prefix('admin')->middleware(['auth', 'verified', 'role:administrador|desa
 
     Route::get('user/register', [RegisteredUserController::class, 'create'])
         ->name('register');
+
+    Route::get('users/{user}/edit', [RegisteredUserController::class, 'edit'])
+        ->name('users.edit');
+
+    Route::put('users/{user}/update', [RegisteredUserController::class, 'update'])
+        ->name('users.update');
 
     Route::post('user/register', [RegisteredUserController::class, 'store'])->name('register.store');
 });

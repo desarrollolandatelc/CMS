@@ -128,7 +128,7 @@
             </Blockquote>
             <Label for="email" class="block mt-4 w-full">Cliente</Label>
 
-            <InputAction value={$form.client.name} bind:defaultModal>
+            <InputAction value={$form.client?.name} bind:defaultModal>
                 <WindowTable
                     COMPONENT={Table}
                     searchRoute="clients.search"

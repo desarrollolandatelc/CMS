@@ -3,7 +3,8 @@
     import { page } from "@inertiajs/svelte";
 
     import Repeater from "../../../Components/Gui/Repeater.svelte";
-    import Client from "./Client.svelte";
+    import Client from "./Client/Client.svelte";
+    import Seller from "./User/Seller.svelte";
     import ItemForm from "./ItemForm.svelte";
 
     export let form;
@@ -26,6 +27,14 @@
         <Card size="xl">
             <div class="w-full grid md:grid-cols-2 gap-2 bg-white">
                 <div class="w-full">
+                    <Seller bind:form></Seller>
+                    {#if $form.errors.client_id}
+                        <Helper color="red" class="mt-2">
+                            {$form.errors.client_id}
+                        </Helper>
+                    {/if}
+                </div>
+                <div class="w-full">
                     <Client bind:form></Client>
                     {#if $form.errors.client_id}
                         <Helper color="red" class="mt-2">
@@ -36,7 +45,7 @@
             </div>
         </Card>
         <Card size="xl">
-            <div class="w-full grid md:grid-cols-2 gap-2 bg-white">
+            <div class="w-full grid md:grid-cols-3 gap-2 bg-white">
                 <div>
                     <p class="font-semibold mb-1">Subtotal</p>
                     <span>{formato.format(subtotal)}</span>
@@ -68,13 +77,14 @@
             {/if}
         </Card>
     </div>
-    <div class="md:col-span-full">
-        <Card size="xl">
-            <Repeater COMPONENT={ItemForm} bind:values={$form.details} />
-        </Card>
-    </div>
+    {#if $form.user_id > 0 && $form.client_id > 0}
+        <div class="md:col-span-full">
+            <Card size="xl">
+                <Repeater COMPONENT={ItemForm} bind:values={$form.details} />
+            </Card>
+        </div>
+    {/if}
 </div>
-
 <div class="flex items-center mt-4">
     <Button type="submit">Registrar</Button>
     <Button href="/admin/quotations" color="alternative" class="ml-4">
