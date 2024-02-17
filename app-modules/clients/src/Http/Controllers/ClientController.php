@@ -144,8 +144,8 @@ class ClientController extends Controller
         $discounts = $client->discounts;
         if (!empty($discounts) && count($discounts) > 0) {
             foreach ($discounts as $key => $discount) {
-                if ($discount['provider_id'] == $provider_id) {
-                    $discountValue = $discount['value'];
+                if ($discount['provider']['id'] == $provider_id) {
+                    $discountValue = $discount['percentage'];
                     break;
                 }
             }

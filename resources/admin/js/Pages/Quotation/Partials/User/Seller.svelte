@@ -1,32 +1,42 @@
 <script>
-    import { Label } from "flowbite-svelte";
-    import WindowTable from "../../../../Components/Core/WindowTable.svelte";
-    import InputAction from "../../../../Components/Gui/InputAction.svelte";
-    import { client_id } from "../helper";
-    import { SearchSolid } from "flowbite-svelte-icons";
-    import TableFormat from "../TableFormat.svelte";
+    import axios from "axios";
+    import { Label, Select } from "flowbite-svelte";
+    import { onMount } from "svelte";
 
     export let form;
-    let defaultModal = false;
 
+    let users = [];
     const selected = (event) => {
-        $form.client_id = event.detail.id;
-        $form.client.name = event.detail.name;
-        $client_id = event.detail.id;
-
+        $form.user.name = event.detail.name;
         defaultModal = false;
     };
+
+    const searchSellers = () => {
+        axios
+            .get(route("users.search"))
+            .then((response) => {
+                users = response.data;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    onMount(() => {
+        searchSellers();
+    });
 </script>
 
 <Label for="client" class="block w-full">
     Vendedor <sup class="text-red-600">*</sup>
 </Label>
-<InputAction value={$form.user?.name} bind:defaultModal>
-    <SearchSolid slot="button-title" />
-    <WindowTable
-        COMPONENT={TableFormat}
-        searchRoute="users.search"
-        table="users"
-        on:change={selected}
-    ></WindowTable>
-</InputAction>
+<Select
+    bind:value={$form.user_id}
+    id="user_id"
+    name="user_id"
+    on:change={selected}
+>
+    {#each users as user}
+        <option value={user.id}>{user.name}</option>
+    {/each}
+</Select>

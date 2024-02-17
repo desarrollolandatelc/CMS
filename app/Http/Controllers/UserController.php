@@ -50,11 +50,9 @@ class UserController extends Controller
 
     public function search(Request $request)
     {
-        $query = $request->input('query');
         $users = User::where('status', 1)
             ->whereNot('id', auth()->user()->id)
-            ->whereHas('roles', fn ($q) => $q->where('name', 'administrador'))
-            ->where('name', 'like', '%' . $query . '%')->limit(5);
+            ->whereHas('roles', fn ($q) => $q->where('name', 'administrador'))->limit(5);
         return response()->json($users->get());
     }
 }

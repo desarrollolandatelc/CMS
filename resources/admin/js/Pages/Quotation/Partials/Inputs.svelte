@@ -28,7 +28,7 @@
             <div class="w-full grid md:grid-cols-2 gap-2 bg-white">
                 <div class="w-full">
                     <Seller bind:form></Seller>
-                    {#if $form.errors.client_id}
+                    {#if $form.errors.user_id}
                         <Helper color="red" class="mt-2">
                             {$form.errors.client_id}
                         </Helper>
