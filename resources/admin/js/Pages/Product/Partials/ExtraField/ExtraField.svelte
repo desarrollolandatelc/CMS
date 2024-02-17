@@ -1,9 +1,10 @@
 <script lang="ts">
     import { Input, Label } from "flowbite-svelte";
-    import InputAction from "../../../Components/Gui/InputAction.svelte";
-    import WindowTable from "../../../Components/Core/WindowTable.svelte";
-    import Table from "../../Provider/Partials/Table.svelte";
+    import InputAction from "../../../../Components/Gui/InputAction.svelte";
+    import WindowTable from "../../../../Components/Core/WindowTable.svelte";
     import { onMount } from "svelte";
+    import TableFormat from "../TableFormat.svelte";
+    import { SearchSolid } from "flowbite-svelte-icons";
 
     const route = window.route;
 
@@ -41,8 +42,10 @@
         <div>
             <Label>Campo</Label>
             <InputAction value={detail.field.name} bind:defaultModal>
+                <SearchSolid slot="button-title" />
+
                 <WindowTable
-                    COMPONENT={Table}
+                    COMPONENT={TableFormat}
                     searchRoute="fields.search"
                     table="fields"
                     on:change={selected}

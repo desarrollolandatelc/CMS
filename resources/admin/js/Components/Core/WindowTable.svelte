@@ -6,8 +6,11 @@
     let data = [];
 
     export let COMPONENT;
+    export let HEADER_FORMAT_TABLE = null;
+    export let BODY_FORMAT_TABLE = null;
     export let searchRoute;
     export let table;
+    export let searchFor = "";
 
     $: if (query.length > 2) {
         searchData();
@@ -32,11 +35,11 @@
     };
 </script>
 
-<Input placeholder="Buscar..." bind:value={query} />
+<Input placeholder="Buscar {searchFor}" bind:value={query} />
 <!-- Muestra la tabla -->
 <svelte:component
     this={COMPONENT}
-    ACTIONS={SelectedAction}
+    {BODY_FORMAT_TABLE}
     bind:data
     on:change
     hasDeleteAll={false}

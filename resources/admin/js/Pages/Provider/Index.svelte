@@ -2,10 +2,10 @@
     import { Heading, Button, Input } from "flowbite-svelte";
     import AuthenticatedLayout from "../../Layouts/AuthenticatedLayout.svelte";
 
-    import Table from "./Partials/Table.svelte";
-    import Actions from "./Partials/Actions.svelte";
     import BulkDeleteAction from "./Partials/BulkDeleteActionOption.svelte";
     import Pagination from "../../Components/Gui/Pagination.svelte";
+    import Table from "../../Components/Gui/Table.svelte";
+    import IndexBodyTableCells from "./Partials/IndexBodyTableCells.svelte";
 
     export let providers: Paginate = null;
 
@@ -33,9 +33,10 @@
         </div>
         <Table
             data={providers.data}
-            ACTIONS={Actions}
             bind:selected
             bind:selectedAll
+            headerLabel={["Nombre", "Email", "Estado"]}
+            BODY_FORMAT_TABLE={IndexBodyTableCells}
         ></Table>
 
         <Pagination paginate={providers}></Pagination>

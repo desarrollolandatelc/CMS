@@ -1,11 +1,11 @@
 <script lang="ts">
-    import { Heading, Button, Input, Checkbox } from "flowbite-svelte";
+    import { Heading, Button, Input } from "flowbite-svelte";
     import AuthenticatedLayout from "../../Layouts/AuthenticatedLayout.svelte";
     import BulkDeleteAction from "../../Components/Core/BulkDeleteActionOption.svelte";
 
     import Pagination from "../../Components/Gui/Pagination.svelte";
     import Table from "../../Components/Gui/Table.svelte";
-    import TableSingleActions from "../../Components/Core/TableSingleActions.svelte";
+    import IndexBodyTableCells from "./Partials/IndexBodyTableCells.svelte";
 
     let selected = [];
     let selectedAll = false;
@@ -37,11 +37,10 @@
         </div>
         <Table
             data={paginate.data}
-            ACTIONS={TableSingleActions}
+            headerLabel={["Cód barras", "Nombre", "Precio", "Estado"]}
+            BODY_FORMAT_TABLE={IndexBodyTableCells}
             bind:selected
             bind:selectedAll
-            editRoute="products.edit"
-            deleteRoute="products.destroy"
         ></Table>
         <Pagination {paginate}></Pagination>
     </div>

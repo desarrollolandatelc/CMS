@@ -9,6 +9,7 @@ use Modules\Clients\Http\Controllers\ClientController;
 Route::prefix('admin')->middleware(['auth', 'verified', 'web', 'role:administrador|desarrollador'])->group(function () {
     Route::delete('/clients/bulk-delete', [ClientController::class, 'bulkDestroy'])->name('clients.bulk-destroy');
     Route::get('clients/search', [ClientController::class, 'search'])->name('clients.search');
+    Route::get('clients/get-discount', [ClientController::class, 'getDiscountByProvider'])->name('clients.get-discount');
     Route::resource('/clients', ClientController::class);
 });
 // Route::get('/clients/{client}', [ClientsController::class, 'show'])->name('clients.show');

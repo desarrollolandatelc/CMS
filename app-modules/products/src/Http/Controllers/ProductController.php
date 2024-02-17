@@ -20,7 +20,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $paginate = Product::paginate(12);
+        $paginate = Product::with('brand', 'category', 'currency', 'provider', 'title')->paginate(12);
         return Inertia::render('Product/Index', [
             'paginate' => $paginate
         ]);
@@ -118,5 +118,14 @@ class ProductController extends Controller
     private function getExtraFields(Request $request): array
     {
         return $this->extraFields($request->fields);
+    }
+
+    public function search(Request $request)
+    {
+        $querySearch = $request->get('query');
+        $products = Product::with(['title', 'provider'])->whereHas('title', function ($query) use ($querySearch) {
+            $query->where('name', 'like', '%' . $querySearch . '%');
+        })->orWhere('barcode', 'like', '%' . $querySearch . '%')->limit(5)->get();
+        return response()->json($products);
     }
 }

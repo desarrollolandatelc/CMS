@@ -16,13 +16,13 @@
     import { onMount } from "svelte";
 
     import slugify from "slugify";
-    import Title from "./Title.svelte";
-    import Category from "./Category.svelte";
-    import Brand from "./Brand.svelte";
-    import Provider from "./Provider.svelte";
+    import Title from "./Title/Title.svelte";
+    import Category from "./Category/Category.svelte";
+    import Brand from "./Brand/Brand.svelte";
+    import Provider from "./Provider/Provider.svelte";
     import axios from "axios";
     import ImageForm from "./ImageForm.svelte";
-    import ExtraField from "./ExtraField.svelte";
+    import ExtraField from "./ExtraField/ExtraField.svelte";
     import Repeater from "../../../Components/Gui/Repeater.svelte";
     import Editor from "@tinymce/tinymce-svelte";
 
@@ -50,7 +50,6 @@
     });
 </script>
 
-{JSON.stringify($form)}
 <div class="grid md:grid-cols-3 gap-2">
     <div class="md:col-span-2">
         <Tabs
@@ -260,7 +259,7 @@
 
 <div class="flex items-center mt-4">
     <Button type="submit">Registrar</Button>
-    <Button href="/admin/categories" color="alternative" class="ml-4">
+    <Button href="/admin/products" color="alternative" class="ml-4">
         Cancelar
     </Button>
 </div>

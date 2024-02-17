@@ -7,7 +7,7 @@ use Modules\Products\Http\Controllers\ProductController;
 
 Route::prefix('admin')->middleware(['auth', 'web', 'verified', 'role:administrador|desarrollador'])->group(function () {
     Route::delete('/products/bulk-delete', [ProductController::class, 'bulkDestroy'])->name('products.bulk-destroy');
-
+    Route::get('products/search', [ProductController::class, 'search'])->name('products.search');
     Route::resource('products', ProductController::class);
 });
 // Route::get('/products', [ProductsController::class, 'index'])->name('products.index');

@@ -134,4 +134,22 @@ class ClientController extends Controller
         $client->delete();
         return redirect()->route('clients.index')->with('success', 'Client deleted successfully.');
     }
+
+    public function getDiscountByProvider(Request $request)
+    {
+        $provider_id = $request->get('provider_id');
+        $discountValue = 0;
+
+        $client = Client::find($request->get('client_id'));
+        $discounts = $client->discounts;
+        if (!empty($discounts) && count($discounts) > 0) {
+            foreach ($discounts as $key => $discount) {
+                if ($discount['provider_id'] == $provider_id) {
+                    $discountValue = $discount['value'];
+                    break;
+                }
+            }
+        }
+        return $discountValue;
+    }
 }

@@ -99,7 +99,10 @@
                 <svelte:fragment slot="icon">
                     <CartPlusAltSolid class="w-5 h-5" />
                 </svelte:fragment>
-                <SidebarDropdownItem label="Cotizaciones" />
+                <SidebarDropdownItem
+                    label="Cotizaciones"
+                    href="/admin/quotations"
+                />
                 <SidebarDropdownItem label="Ordenes de venta" />
             </SidebarDropdownWrapper>
             <SidebarDropdownWrapper label="Administración">

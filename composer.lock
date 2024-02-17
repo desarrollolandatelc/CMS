@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2df49345ebffece82eaf9572e0b74a94",
+    "content-hash": "5cd08c004f140a3a898783493f7100a7",
     "packages": [
         {
             "name": "brick/math",
@@ -1895,12 +1895,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "91159cbddf95a31da3186255735dca5dfcb64c8b"
+                "reference": "296977255e9295cc1c15c85e40d9a71e127a1895"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/91159cbddf95a31da3186255735dca5dfcb64c8b",
-                "reference": "91159cbddf95a31da3186255735dca5dfcb64c8b",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/296977255e9295cc1c15c85e40d9a71e127a1895",
+                "reference": "296977255e9295cc1c15c85e40d9a71e127a1895",
                 "shasum": ""
             },
             "require": {
@@ -2091,7 +2091,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-02-16T17:41:00+00:00"
+            "time": "2024-02-16T21:20:29+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -3046,6 +3046,38 @@
                     "Modules\\Providers\\Tests\\": "tests/",
                     "Modules\\Providers\\Database\\Factories\\": "database/factories/",
                     "Modules\\Providers\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "modules/quotations",
+            "version": "1.0",
+            "dist": {
+                "type": "path",
+                "url": "app-modules/quotations",
+                "reference": "289b8e9173a35656b2d42b8ab87c12e9276ba09a"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Modules\\Quotations\\Providers\\QuotationsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Modules\\Quotations\\": "src/",
+                    "Modules\\Quotations\\Tests\\": "tests/",
+                    "Modules\\Quotations\\Database\\Factories\\": "database/factories/",
+                    "Modules\\Quotations\\Database\\Seeders\\": "database/seeders/"
                 }
             },
             "license": [

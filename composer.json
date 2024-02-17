@@ -24,6 +24,7 @@
         "modules/person_types": "*",
         "modules/products": "*",
         "modules/providers": "*",
+        "modules/quotations": "*",
         "modules/titles": "*",
         "pusher/pusher-php-server": "^7.2",
         "spatie/laravel-permission": "^6.3",

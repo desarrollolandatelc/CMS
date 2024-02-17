@@ -15,7 +15,12 @@
         bind:value
         required
     />
-    <ModalButton title="Buscar" modalTitle="Buscar" bind:defaultModal>
+    <ModalButton
+        class="rounded-r-md border-r border-t border-b"
+        modalTitle="Buscar"
+        bind:defaultModal
+    >
+        <slot name="button-title" slot="button-title" />
         <slot />
     </ModalButton>
 </div>

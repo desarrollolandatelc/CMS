@@ -1,0 +1,24 @@
+{
+	"name": "modules/quotations",
+	"description": "",
+	"type": "library",
+	"version": "1.0",
+	"license": "proprietary",
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Modules\\Quotations\\": "src/",
+			"Modules\\Quotations\\Tests\\": "tests/",
+			"Modules\\Quotations\\Database\\Factories\\": "database/factories/",
+			"Modules\\Quotations\\Database\\Seeders\\": "database/seeders/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Modules\\Quotations\\Providers\\QuotationsServiceProvider"
+			]
+		}
+	}
+}

@@ -42,7 +42,7 @@
 </script>
 
 <AuthenticatedLayout>
-    <Heading tag="h3" class="mb-4">Actualizar categoría</Heading>
+    <Heading tag="h3" class="mb-4">Actualizar producto</Heading>
     <form on:submit|preventDefault={submit}>
         <Inputs {form}></Inputs>
     </form>

@@ -12,60 +12,55 @@
     export let selected = [];
     export let selectedAll = false;
 
-    export let editRoute = "";
-    export let deleteRoute = "";
+    export let hasBulkAction = true;
+    /**
+     * Componentes
+     */
+    export let BODY_FORMAT_TABLE = null;
 
-    export let ACTIONS = null;
-
-    export let TABLEROWPANEL = null;
+    export let headerLabel = [];
 
     export let data;
 
-    let openRow = null;
-
     const toggleAll = (e) => {
-        // Seleccionar todos los ids
         selected = selectedAll ? data.map((item) => item.id) : [];
     };
-
-    const toggleRow = (i) => {
-        openRow = openRow === i ? null : i;
-    };
 </script>
-
 <Table noborder={true}>
     <TableHead>
-        <TableHeadCell>
-            <Checkbox on:change={toggleAll} bind:checked={selectedAll} />
-        </TableHeadCell>
-
+        {#if hasBulkAction}
+            <TableHeadCell>
+                <Checkbox on:change={toggleAll} bind:checked={selectedAll} />
+            </TableHeadCell>
+        {/if}
         <TableHeadCell>ID</TableHeadCell>
-        <TableHeadCell>Nombre</TableHeadCell>
-        <TableHeadCell>Acciones</TableHeadCell>
+        {#each headerLabel as header}
+            <TableHeadCell>{header}</TableHeadCell>
+        {:else}
+            <TableHeadCell>Nombre</TableHeadCell>
+        {/each}
     </TableHead>
     <TableBody>
         {#each data as item}
             <TableBodyRow>
-                <TableBodyCell>
-                    <Checkbox bind:group={selected} value={item.id}></Checkbox>
-                </TableBodyCell>
-
+                {#if hasBulkAction}
+                    <TableBodyCell>
+                        <Checkbox bind:group={selected} value={item.id}
+                        ></Checkbox>
+                    </TableBodyCell>
+                {/if}
                 <TableBodyCell>{item.id}</TableBodyCell>
-                <TableBodyCell class="text-blue-700 cursor-pointer hover:underline" on:click={() => toggleRow(item.id)}>{item.name}</TableBodyCell>
-                <TableBodyCell>
+
+                {#if BODY_FORMAT_TABLE}
                     <svelte:component
-                        this={ACTIONS}
-                        data={item}
-                        {editRoute}
-                        {deleteRoute}
+                        this={BODY_FORMAT_TABLE}
+                        {item}
                         on:change
                     />
-                </TableBodyCell>
+                {:else}
+                    <TableBodyCell>{item.name}</TableBodyCell>
+                {/if}
             </TableBodyRow>
-
-            {#if TABLEROWPANEL && openRow === item.id}
-                <svelte:component this={TABLEROWPANEL} {item} />
-            {/if}
         {/each}
     </TableBody>
 </Table>

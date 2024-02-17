@@ -2,8 +2,9 @@
     import { Input, Label } from "flowbite-svelte";
     import InputAction from "../../../Components/Gui/InputAction.svelte";
     import WindowTable from "../../../Components/Core/WindowTable.svelte";
-    import Table from "../../Provider/Partials/Table.svelte";
     import { onMount } from "svelte";
+    import { SearchSolid } from "flowbite-svelte-icons";
+    import TableFormat from "./TableFormat.svelte";
 
     const route = window.route;
 
@@ -35,8 +36,9 @@
         <div>
             <Label>Proveedor</Label>
             <InputAction value={detail.provider.name} bind:defaultModal>
+                <SearchSolid slot="button-title" />
                 <WindowTable
-                    COMPONENT={Table}
+                    COMPONENT={TableFormat}
                     searchRoute="providers.search"
                     table="providers"
                     on:change={selected}

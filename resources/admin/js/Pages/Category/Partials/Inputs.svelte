@@ -34,7 +34,6 @@
     };
 </script>
 
-{JSON.stringify($form)}
 <div class="grid md:grid-cols-3 gap-2">
     <div class="md:col-span-2">
         <Card size="xl">
