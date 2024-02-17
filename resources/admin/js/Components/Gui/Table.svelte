@@ -3,11 +3,10 @@
         Checkbox,
         Table,
         TableBody,
-        TableBodyCell,
-        TableBodyRow,
         TableHead,
         TableHeadCell,
     } from "flowbite-svelte";
+    import TableBodyRowFormat from "../Core/TableBodyRowFormat.svelte";
 
     export let selected = [];
     export let selectedAll = false;
@@ -26,6 +25,7 @@
         selected = selectedAll ? data.map((item) => item.id) : [];
     };
 </script>
+
 <Table noborder={true}>
     <TableHead>
         {#if hasBulkAction}
@@ -42,25 +42,16 @@
     </TableHead>
     <TableBody>
         {#each data as item}
-            <TableBodyRow>
-                {#if hasBulkAction}
-                    <TableBodyCell>
-                        <Checkbox bind:group={selected} value={item.id}
-                        ></Checkbox>
-                    </TableBodyCell>
-                {/if}
-                <TableBodyCell>{item.id}</TableBodyCell>
-
-                {#if BODY_FORMAT_TABLE}
-                    <svelte:component
-                        this={BODY_FORMAT_TABLE}
-                        {item}
-                        on:change
-                    />
-                {:else}
-                    <TableBodyCell>{item.name}</TableBodyCell>
-                {/if}
-            </TableBodyRow>
+            {#if BODY_FORMAT_TABLE}
+                <svelte:component
+                    this={BODY_FORMAT_TABLE}
+                    bind:selected
+                    {item}
+                    on:change
+                />
+            {:else}
+                <TableBodyRowFormat bind:selected {item} {hasBulkAction} />
+            {/if}
         {/each}
     </TableBody>
 </Table>

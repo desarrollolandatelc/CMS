@@ -9,6 +9,12 @@
 
     export let form;
 
+    let statusAvailable = {
+        pending: "Pendiente",
+        accepted: "Aceptado",
+        rejected: "Rechazado",
+    };
+
     const formato = new Intl.NumberFormat("es-CO", {
         maximumFractionDigits: 2,
         currency: "COP",
@@ -66,14 +72,14 @@
     <div class="md:col-span-1">
         <Card size="xl">
             <Heading tag="h4" class="border-b mb-4">Estado</Heading>
-            {#if ($form.status === "pending" || (($form.status === "accepted" || $form.status === "rejected") && $form.created_at === $form.updated_at)) && ($page.props.auth.role === "administrador" || $page.props.auth.role === "desarrollador")}
+            {#if $form.id > 0 && $form.props.role === "administrador"}
                 <Select bind:value={$form.status}>
                     <option value="pending">Pendiente</option>
                     <option value="accepted">Aceptado</option>
                     <option value="rejected">Rechazado</option>
                 </Select>
             {:else}
-                <span>{$form.status}</span>
+                <span>{statusAvailable[$form.status]}</span>
             {/if}
         </Card>
     </div>

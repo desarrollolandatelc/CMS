@@ -6,6 +6,7 @@
     import { toasts, ToastContainer, FlatToast } from "svelte-toasts";
 
     const form = useForm({
+        id: 0,
         user_id: "",
         client_id: $page.props.auth.client?.id ?? "",
         status: "pending",

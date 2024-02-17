@@ -8,6 +8,7 @@
     export let quotation;
 
     const form = useForm({
+        id: quotation.id,
         user_id: quotation.user_id,
         client_id: quotation.client_id,
         status: quotation.status,

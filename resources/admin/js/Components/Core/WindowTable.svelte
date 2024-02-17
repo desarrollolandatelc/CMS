@@ -1,12 +1,10 @@
 <script>
-    import SelectedAction from "./SelectedAction.svelte";
     import { Input } from "flowbite-svelte";
 
     let query = "";
     let data = [];
 
     export let COMPONENT;
-    export let HEADER_FORMAT_TABLE = null;
     export let BODY_FORMAT_TABLE = null;
     export let searchRoute;
     export let table;
