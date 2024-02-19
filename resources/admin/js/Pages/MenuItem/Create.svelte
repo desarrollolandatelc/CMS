@@ -8,6 +8,13 @@
     const form = useForm({
         name: "",
         alias: "",
+        internal_link: {
+            name: "",
+            controller: "",
+            field: "",
+        },
+        parent_id: "",
+        module_id: "",
         status: false,
     });
 

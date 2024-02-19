@@ -3,8 +3,8 @@
     "description": "Chpoee",
     "version": "1.0",
     "license": "proprietary",
-    "templates": {
-        "products": {
+    "templates": [
+        {
             "label": "Productos",
             "variants": [
                 {
@@ -19,7 +19,7 @@
                 }
             ]
         },
-        "system": {
+        {
             "label": "Enlaces del sistema",
             "variants": [
                 {
@@ -29,7 +29,7 @@
                 }
             ]
         },
-        "articles": {
+        {
             "label": "Artículos",
             "variants": [
                 {
@@ -39,5 +39,5 @@
                 }
             ]
         }
-    }
+    ]
 }

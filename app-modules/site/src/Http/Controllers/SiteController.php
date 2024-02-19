@@ -86,4 +86,14 @@ class SiteController extends Controller
         $site->delete();
         return redirect()->route('sites.index')->with('success', 'Site deleted successfully');
     }
+
+    public function variant()
+    {
+        $site = Site::where('status', 1)->first();
+        $config = $site->config;
+        $path = resource_path() . "/{$config}";
+        $configFile = file_get_contents($path);
+        $configFile = json_decode($configFile, true);
+        return response()->json($configFile['templates']);
+    }
 }
