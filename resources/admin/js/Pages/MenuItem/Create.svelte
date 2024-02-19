@@ -8,6 +8,7 @@
     const form = useForm({
         name: "",
         alias: "",
+        href: "",
         internal_link: {
             name: "",
             controller: "",

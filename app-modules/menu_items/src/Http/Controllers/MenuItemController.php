@@ -90,7 +90,7 @@ class MenuItemController extends Controller
 
     public function getAllByModuleId(Request $request)
     {
-        $menuItems = MenuItem::where('module_id', $request->module_id)->get();
+        $menuItems = MenuItem::where('module_id', $request->module_id)->whereNot('id', $request->get('id'))->get();
         return response()->json($menuItems);
     }
 }

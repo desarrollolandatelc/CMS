@@ -8,11 +8,14 @@
     export let menuItem;
 
     const form = useForm({
+        id: menuItem.id,
         name: menuItem.name,
         alias: menuItem.alias,
         href: menuItem.href,
         status: menuItem.status,
         module_id: menuItem.module_id,
+        parent_id: menuItem.parent_id,
+        internal_link: menuItem.internal_link,
     });
 
     const submit = () => {

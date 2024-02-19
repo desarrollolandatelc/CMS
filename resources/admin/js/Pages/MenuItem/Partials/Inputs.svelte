@@ -26,6 +26,10 @@
         $form.href = null;
     }
 
+    $: if ($form.module_id) {
+        searchMenuItems();
+    }
+
     const searchMenuModulesByType = () => {
         axios
             .get(
@@ -43,6 +47,7 @@
             .get(
                 route("menu-items.get-all-by-module-id", {
                     module_id: $form.module_id,
+                    id: $form.id,
                 }),
             )
             .then((response) => {
@@ -179,7 +184,7 @@
 
 <div class="flex items-center mt-4">
     <Button type="submit">Registrar</Button>
-    <Button href="/admin/brands" color="alternative" class="ml-4">
+    <Button href="/admin/menu-items" color="alternative" class="ml-4">
         Cancelar
     </Button>
 </div>

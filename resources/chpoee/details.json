@@ -9,13 +9,22 @@
             "variants": [
                 {
                     "name": "Listar productos",
-                    "controller": "ProductsController",
-                    "field": ""
+                    "controller": "ListProductController",
+                    "field": "",
+                    "type": "products"
                 },
                 {
                     "name": "Listar productos por categoría",
-                    "controller": "ProductsByCategoriesController",
-                    "field": "InputAction"
+                    "controller": "ProductByCategoriesController",
+                    "field": "InputAction",
+                    "type": "categories"
+                },
+                {
+                    "name": "Mostrar producto",
+                    "controller": "ProducController",
+                    "field": "InputAction",
+                    "type": "products",
+                    "relationship": "title"
                 }
             ]
         },
@@ -35,7 +44,8 @@
                 {
                     "name": "Mostrar un artículo",
                     "controller": "ArticlesController",
-                    "field": "InputAction"
+                    "field": "InputAction",
+                    "type": "articles"
                 }
             ]
         }

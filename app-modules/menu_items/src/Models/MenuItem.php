@@ -22,6 +22,13 @@ class MenuItem extends Model
         'module_id',
     ];
 
+    protected function casts()
+    {
+        return [
+            'internal_link' => 'array',
+        ];
+    }
+
 
     public function parent(): BelongsTo
     {
