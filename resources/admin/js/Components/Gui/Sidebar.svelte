@@ -128,6 +128,17 @@
                 <SidebarDropdownItem label="Slider" />
                 <SidebarDropdownItem label="Banner" />
             </SidebarDropdownWrapper>
+
+            <SidebarDropdownWrapper label="Desarrollo">
+                <svelte:fragment slot="icon">
+                    <AtomSolid class="w-5 h-5" />
+                </svelte:fragment>
+                <SidebarDropdownItem
+                    label="Tipo de módulo"
+                    href="/admin/module-types"
+                />
+                <SidebarDropdownItem label="Módulos" href="/admin/modules" />
+            </SidebarDropdownWrapper>
         </SidebarGroup>
     </SidebarWrapper>
 </Sidebar>
