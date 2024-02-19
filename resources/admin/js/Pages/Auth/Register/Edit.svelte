@@ -1,15 +1,5 @@
 <script>
-    import {
-        Button,
-        Card,
-        Heading,
-        Helper,
-        Input,
-        Label,
-        Toggle,
-        Select,
-        Blockquote,
-    } from "flowbite-svelte";
+    import { Button, Heading } from "flowbite-svelte";
     import { useForm } from "@inertiajs/svelte";
     import AuthenticatedLayout from "../../../Layouts/AuthenticatedLayout.svelte";
     import Inputs from "./Partials/Inputs.svelte";
@@ -23,11 +13,7 @@
         client: user.client,
     });
     const submit = () => {
-        $form.put(route("users.update", user.id), {
-            onSuccess: () => {
-                $form.reset();
-            },
-        });
+        $form.put(route("users.update", user.id));
     };
 </script>
 

@@ -88,4 +88,12 @@ class ModuleController extends Controller
         $brand->delete();
         return redirect()->route('modules.index')->with('success', 'Module deleted successfully');
     }
+
+    public function getAllByType(Request $request)
+    {
+        $type = $request->get('type');
+        $modules = Module::whereHas('module_type', fn ($q) => $q->where('name', $type))->get();
+
+        return response()->json($modules);
+    }
 }

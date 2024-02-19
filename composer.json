@@ -21,6 +21,7 @@
         "modules/currencies": "*",
         "modules/document_types": "*",
         "modules/fields": "*",
+        "modules/menu_items": "*",
         "modules/module_types": "*",
         "modules/modules": "*",
         "modules/person_types": "*",

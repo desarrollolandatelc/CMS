@@ -117,8 +117,10 @@
                 <svelte:fragment slot="icon">
                     <CogSolid class="w-5 h-5" />
                 </svelte:fragment>
-                <SidebarDropdownItem label="Sitio" />
-                <SidebarDropdownItem label="Ítem de menú" />
+                <SidebarDropdownItem
+                    label="Ítem de menú"
+                    href="/admin/menu-items"
+                />
                 <SidebarDropdownItem label="Plantillas" />
             </SidebarDropdownWrapper>
             <SidebarDropdownWrapper label="Publicidad">
@@ -133,6 +135,8 @@
                 <svelte:fragment slot="icon">
                     <AtomSolid class="w-5 h-5" />
                 </svelte:fragment>
+                <SidebarDropdownItem label="Sitio" href="/admin/sites" />
+
                 <SidebarDropdownItem
                     label="Tipo de módulo"
                     href="/admin/module-types"

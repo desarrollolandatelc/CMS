@@ -1,0 +1,24 @@
+{
+	"name": "modules/menu_items",
+	"description": "",
+	"type": "library",
+	"version": "1.0",
+	"license": "proprietary",
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Modules\\MenuItems\\": "src/",
+			"Modules\\MenuItems\\Tests\\": "tests/",
+			"Modules\\MenuItems\\Database\\Factories\\": "database/factories/",
+			"Modules\\MenuItems\\Database\\Seeders\\": "database/seeders/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Modules\\MenuItems\\Providers\\MenuItemsServiceProvider"
+			]
+		}
+	}
+}

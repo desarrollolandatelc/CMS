@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dbd28217b59421eb59fefea430a5d97e",
+    "content-hash": "6b7c3cb4a9e8decb06d039e00840829f",
     "packages": [
         {
             "name": "brick/math",
@@ -1895,12 +1895,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "09513ac3ee362ff8c1affed4270b4ac8b6439d3b"
+                "reference": "343cbd60f1ae05838b29220f4884dcda6a00a52a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/09513ac3ee362ff8c1affed4270b4ac8b6439d3b",
-                "reference": "09513ac3ee362ff8c1affed4270b4ac8b6439d3b",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/343cbd60f1ae05838b29220f4884dcda6a00a52a",
+                "reference": "343cbd60f1ae05838b29220f4884dcda6a00a52a",
                 "shasum": ""
             },
             "require": {
@@ -2091,7 +2091,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-02-17T15:42:43+00:00"
+            "time": "2024-02-19T15:00:39+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -2961,6 +2961,38 @@
             }
         },
         {
+            "name": "modules/menu_items",
+            "version": "1.0",
+            "dist": {
+                "type": "path",
+                "url": "app-modules/menu_items",
+                "reference": "d8471b2a35cf93a5caae8da47141eba463b4d386"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Modules\\MenuItems\\Providers\\MenuItemsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Modules\\MenuItems\\": "src/",
+                    "Modules\\MenuItems\\Tests\\": "tests/",
+                    "Modules\\MenuItems\\Database\\Factories\\": "database/factories/",
+                    "Modules\\MenuItems\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
             "name": "modules/module_types",
             "version": "1.0",
             "dist": {
@@ -3142,6 +3174,38 @@
                     "Modules\\Quotations\\Tests\\": "tests/",
                     "Modules\\Quotations\\Database\\Factories\\": "database/factories/",
                     "Modules\\Quotations\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "modules/site",
+            "version": "1.0",
+            "dist": {
+                "type": "path",
+                "url": "app-modules/site",
+                "reference": "2af28609ec6e9e4e338bdeb73dcfb5ff358045ad"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Modules\\Site\\Providers\\SiteServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Modules\\Site\\": "src/",
+                    "Modules\\Site\\Tests\\": "tests/",
+                    "Modules\\Site\\Database\\Factories\\": "database/factories/",
+                    "Modules\\Site\\Database\\Seeders\\": "database/seeders/"
                 }
             },
             "license": [

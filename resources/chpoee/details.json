@@ -1,0 +1,43 @@
+{
+    "name": "chpoee",
+    "description": "Chpoee",
+    "version": "1.0",
+    "license": "proprietary",
+    "templates": {
+        "products": {
+            "label": "Productos",
+            "variants": [
+                {
+                    "name": "Listar productos",
+                    "controller": "ProductsController",
+                    "field": ""
+                },
+                {
+                    "name": "Listar productos por categoría",
+                    "controller": "ProductsByCategoriesController",
+                    "field": "InputAction"
+                }
+            ]
+        },
+        "system": {
+            "label": "Enlaces del sistema",
+            "variants": [
+                {
+                    "name": "Enlace externo",
+                    "controller": "",
+                    "field": "Text"
+                }
+            ]
+        },
+        "articles": {
+            "label": "Artículos",
+            "variants": [
+                {
+                    "name": "Mostrar un artículo",
+                    "controller": "ArticlesController",
+                    "field": "InputAction"
+                }
+            ]
+        }
+    }
+}
