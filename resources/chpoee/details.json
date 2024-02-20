@@ -11,20 +11,23 @@
                     "name": "Listar productos",
                     "controller": "ListProductController",
                     "field": "",
-                    "type": "products"
+                    "type": "products",
+                    "isInternal": true
                 },
                 {
                     "name": "Listar productos por categoría",
                     "controller": "ProductByCategoriesController",
                     "field": "InputAction",
-                    "type": "categories"
+                    "type": "categories",
+                    "isInternal": true
                 },
                 {
                     "name": "Mostrar producto",
                     "controller": "ProducController",
                     "field": "InputAction",
                     "type": "products",
-                    "relationship": "title"
+                    "relationship": "title",
+                    "isInternal": true
                 }
             ]
         },
@@ -34,7 +37,8 @@
                 {
                     "name": "Enlace externo",
                     "controller": "",
-                    "field": "Text"
+                    "field": "Text",
+                    "isInternal": false
                 }
             ]
         },

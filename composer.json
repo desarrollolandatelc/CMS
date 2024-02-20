@@ -29,6 +29,7 @@
         "modules/providers": "*",
         "modules/quotations": "*",
         "modules/site": "*",
+        "modules/slider": "*",
         "modules/titles": "*",
         "pusher/pusher-php-server": "^7.2",
         "spatie/laravel-permission": "^6.3",

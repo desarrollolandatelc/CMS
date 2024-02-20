@@ -1,0 +1,24 @@
+{
+	"name": "modules/slider",
+	"description": "",
+	"type": "library",
+	"version": "1.0",
+	"license": "proprietary",
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Modules\\Slider\\": "src/",
+			"Modules\\Slider\\Tests\\": "tests/",
+			"Modules\\Slider\\Database\\Factories\\": "database/factories/",
+			"Modules\\Slider\\Database\\Seeders\\": "database/seeders/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Modules\\Slider\\Providers\\SliderServiceProvider"
+			]
+		}
+	}
+}

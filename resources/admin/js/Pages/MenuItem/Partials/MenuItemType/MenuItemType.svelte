@@ -19,11 +19,13 @@
         }
     }
     const selected = (event) => {
+        $form.internal_link = {};
         $form.internal_link.name = event.detail.name;
         $form.internal_link.controller = event.detail.controller;
         $form.internal_link.field = event.detail.field;
         $form.internal_link.type = event.detail.type;
         $form.internal_link.relationship = event.detail.relationship;
+        $form.internal_link.isInternal = event.detail.isInternal;
 
         field_type = fields[event.detail.field]?.component;
         const format = fields[event.detail.field]?.tableFormat;

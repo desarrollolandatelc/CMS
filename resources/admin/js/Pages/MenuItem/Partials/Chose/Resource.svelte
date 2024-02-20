@@ -15,11 +15,12 @@
             event,
         );
 
-        $form.internal_link.resource_id = event.detail.id;
+        $form.internal_link.resource_value = event.detail.id;
         defaultModal = false;
     };
 
     function getName(relation, event) {
+        console.log("holi: "+relation);
         if (!relation) {
             return event.detail.name;
         }

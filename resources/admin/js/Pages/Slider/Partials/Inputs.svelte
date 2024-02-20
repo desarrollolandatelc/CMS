@@ -9,14 +9,13 @@
         Select,
         Toggle,
     } from "flowbite-svelte";
-    import slugify from "slugify";
+
     import { onMount } from "svelte";
-    import MenuItemType from "./MenuItemType/MenuItemType.svelte";
 
     export let form;
-
     let modules = [];
-    let parents = [];
+
+    import slugify from "slugify";
 
     $: if ($form.name && $form.name.length > 0) {
         $form.alias = slugify($form.name);
@@ -24,38 +23,15 @@
         $form.alias = null;
     }
 
-    $: if (!$form.internal_link?.isInternal) {
-        $form.href =  $form.internal_link.resource_value;
-    } else {
-        $form.href = "/" + $form.alias;
-    }
-
-    $: if ($form.module_id) {
-        searchMenuItems();
-    }
-
     const searchMenuModulesByType = () => {
         axios
             .get(
                 route("modules.get-all-by-type", {
-                    type: "menu",
+                    type: "slider",
                 }),
             )
             .then((response) => {
                 modules = response.data;
-            });
-    };
-
-    const searchMenuItems = () => {
-        axios
-            .get(
-                route("menu-items.get-all-by-module-id", {
-                    module_id: $form.module_id,
-                    id: $form.id,
-                }),
-            )
-            .then((response) => {
-                parents = response.data;
             });
     };
 
@@ -109,37 +85,6 @@
                         </Helper>
                     {/if}
                 </div>
-
-                <div class="w-full">
-                    <Label for="href">
-                        Enlace <sup class="text-red-600">*</sup>
-                    </Label>
-                    <Input
-                        id="href"
-                        type="text"
-                        class="mt-1 block w-full"
-                        bind:value={$form.href}
-                        required
-                        disabled={true}
-                        placeholder="Este campo se genera automáticamente"
-                        autofocus
-                        autocomplete="href"
-                    />
-                    {#if $form.errors.href}
-                        <Helper color="red" class="mt-2">
-                            {$form.errors.href}
-                        </Helper>
-                    {/if}
-                </div>
-
-                <div class="w-full col-span-full">
-                    <MenuItemType bind:form />
-                    {#if $form.errors.title_id}
-                        <Helper color="red" class="mt-2">
-                            {$form.errors.title_id}
-                        </Helper>
-                    {/if}
-                </div>
             </div>
         </Card>
     </div>
@@ -147,7 +92,7 @@
         <Card size="xl">
             <Heading tag="h4" class="border-b">Estado</Heading>
             <Label for="email" class="block mt-4 w-full">
-                ¿Desea que esta marca esté activo?<sup class="text-red-600"
+                ¿Desea que este slider esté activo?<sup class="text-red-600"
                     >*</sup
                 >
             </Label>
@@ -160,25 +105,11 @@
             <Heading tag="h4" class="border-b">Asociaciones</Heading>
             <div>
                 <Label for="email" class="block mt-4 w-full">
-                    Menú<sup class="text-red-600">*</sup>
+                    Slider<sup class="text-red-600">*</sup>
                 </Label>
-                <Select
-                    bind:value={$form.module_id}
-                    on:change={searchMenuItems}
-                >
+                <Select bind:value={$form.module_id}>
                     {#each modules as module}
                         <option value={module.id}>{module.name}</option>
-                    {/each}
-                </Select>
-            </div>
-
-            <div>
-                <Label for="email" class="block mt-4 w-full">
-                    Elemento padre
-                </Label>
-                <Select bind:value={$form.parent_id}>
-                    {#each parents as parent}
-                        <option value={parent.id}>{parent.name}</option>
                     {/each}
                 </Select>
             </div>
@@ -188,7 +119,7 @@
 
 <div class="flex items-center mt-4">
     <Button type="submit">Registrar</Button>
-    <Button href="/admin/menu-items" color="alternative" class="ml-4">
+    <Button href="/admin/sliders" color="alternative" class="ml-4">
         Cancelar
     </Button>
 </div>

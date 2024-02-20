@@ -93,4 +93,10 @@ class MenuItemController extends Controller
         $menuItems = MenuItem::where('module_id', $request->module_id)->whereNot('id', $request->get('id'))->get();
         return response()->json($menuItems);
     }
+
+    public function getAllByModuleAlias(Request $request)
+    {
+        $menuItems = MenuItem::with(['childrens'])->whereHas('module', fn ($q) => $q->where('alias', $request->get('alias')))->where('parent_id', null)->get();
+        return response()->json($menuItems);
+    }
 }

@@ -127,7 +127,7 @@
                 <svelte:fragment slot="icon">
                     <AtomSolid class="w-5 h-5" />
                 </svelte:fragment>
-                <SidebarDropdownItem label="Slider" />
+                <SidebarDropdownItem label="Slider" href="/admin/sliders" />
                 <SidebarDropdownItem label="Banner" />
             </SidebarDropdownWrapper>
 

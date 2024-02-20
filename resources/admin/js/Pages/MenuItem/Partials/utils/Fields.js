@@ -1,10 +1,10 @@
-import { Input } from "flowbite-svelte";
 import ProductTableFormat from "../Chose/ProductTableFormat.svelte";
 import Resource from "../Chose/Resource.svelte";
+import TextInput from "../Chose/TextInput.svelte";
 
 export const fields = {
     Text: {
-        component: Input,
+        component: TextInput,
         tableFormat: null
     },
     InputAction:{
