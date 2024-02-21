@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eead6c2c19c1c9a62c272ed7ece39102",
+    "content-hash": "8d824d3d8371007f034a64dad41dddf8",
     "packages": [
         {
             "name": "brick/math",
@@ -1895,12 +1895,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "56bdf4626bc4a3fb6702a9e631e5c1c5b55a4e73"
+                "reference": "a10f61663e4ac6c8bb64c73734531f00d8149fef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/56bdf4626bc4a3fb6702a9e631e5c1c5b55a4e73",
-                "reference": "56bdf4626bc4a3fb6702a9e631e5c1c5b55a4e73",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/a10f61663e4ac6c8bb64c73734531f00d8149fef",
+                "reference": "a10f61663e4ac6c8bb64c73734531f00d8149fef",
                 "shasum": ""
             },
             "require": {
@@ -2091,7 +2091,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-02-20T15:14:37+00:00"
+            "time": "2024-02-21T17:20:36+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -2886,6 +2886,38 @@
                     "Modules\\Currencies\\Tests\\": "tests/",
                     "Modules\\Currencies\\Database\\Factories\\": "database/factories/",
                     "Modules\\Currencies\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "modules/discounts",
+            "version": "1.0",
+            "dist": {
+                "type": "path",
+                "url": "app-modules/discounts",
+                "reference": "a7f4b6db10b61c575512c821924f4a9cd8e610ca"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Modules\\Discounts\\Providers\\DiscountsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Modules\\Discounts\\": "src/",
+                    "Modules\\Discounts\\Tests\\": "tests/",
+                    "Modules\\Discounts\\Database\\Factories\\": "database/factories/",
+                    "Modules\\Discounts\\Database\\Seeders\\": "database/seeders/"
                 }
             },
             "license": [
@@ -7642,16 +7674,16 @@
         },
         {
             "name": "tightenco/ziggy",
-            "version": "v1.8.1",
+            "version": "v1.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tighten/ziggy.git",
-                "reference": "22dafc51f3f5ae5ed51f7cb6b566e6b9537f6937"
+                "reference": "939576ad0f3d3e633a9401c8c377bc7bc873ff35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tighten/ziggy/zipball/22dafc51f3f5ae5ed51f7cb6b566e6b9537f6937",
-                "reference": "22dafc51f3f5ae5ed51f7cb6b566e6b9537f6937",
+                "url": "https://api.github.com/repos/tighten/ziggy/zipball/939576ad0f3d3e633a9401c8c377bc7bc873ff35",
+                "reference": "939576ad0f3d3e633a9401c8c377bc7bc873ff35",
                 "shasum": ""
             },
             "require": {
@@ -7659,8 +7691,8 @@
                 "laravel/framework": ">=5.4@dev"
             },
             "require-dev": {
-                "orchestra/testbench": "^3.0 || ^4.0 || ^5.0 || ^6.0 || ^7.0 || ^8.0",
-                "phpunit/phpunit": "^6.0 || ^7.0 || ^8.0 || ^9.0"
+                "orchestra/testbench": "^3.0 || ^4.0 || ^5.0 || ^6.0 || ^7.0 || ^8.0 || ^9.0",
+                "phpunit/phpunit": "^6.0 || ^7.0 || ^8.0 || ^9.0 || ^10.0"
             },
             "type": "library",
             "extra": {
@@ -7703,9 +7735,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tighten/ziggy/issues",
-                "source": "https://github.com/tighten/ziggy/tree/v1.8.1"
+                "source": "https://github.com/tighten/ziggy/tree/v1.8.2"
             },
-            "time": "2023-10-12T18:31:26+00:00"
+            "time": "2024-02-20T19:56:04+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

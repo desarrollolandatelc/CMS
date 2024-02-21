@@ -5,12 +5,13 @@ namespace Modules\Slider\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Modules\Slider\Http\Controllers\Traits\HasSlide;
 use Modules\Slider\Http\Controllers\Traits\HasValidation;
 use Modules\Slider\Models\Slider;
 
 class SliderController extends Controller
 {
-    use HasValidation;
+    use HasValidation, HasSlide;
 
     public function index()
     {
@@ -40,8 +41,10 @@ class SliderController extends Controller
         if ($validator->fails()) {
             return redirect()->route('sliders.create')->withErrors($validator)->withInput();
         }
-
-        Slider::create($validator->validated());
+        $data = $request->all();
+        $data['details'] = $this->extraFields($request->details);
+        
+        Slider::create($data);
 
         return redirect()->route('sliders.create')->with('success', 'Brand created successfully');
     }
@@ -69,7 +72,10 @@ class SliderController extends Controller
         if ($validator->fails()) {
             return redirect()->route('sliders.edit', $slider)->withErrors($validator)->withInput();
         }
-        $slider->update($validator->validated());
+
+        $data = $request->all();
+        $data['details'] = $this->extraFields($request->details);
+        $slider->update($data);
 
         return redirect()->route('sliders.edit', $slider)->with('success', 'Slider updated successfully');
     }

@@ -94,6 +94,7 @@
                 />
                 <SidebarDropdownItem label="Campos" href="/admin/fields" />
                 <SidebarDropdownItem label="Productos" href="/admin/products" />
+                <SidebarDropdownItem label="Descuentos" href="/admin/discounts" />
             </SidebarDropdownWrapper>
             <SidebarDropdownWrapper label="Ventas">
                 <svelte:fragment slot="icon">
