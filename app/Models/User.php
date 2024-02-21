@@ -49,6 +49,11 @@ class User extends Authenticatable
         ];
     }
 
+    public function isActive()
+    {
+        return $this->status == 1;
+    }
+
     public function client()
     {
         return $this->hasOne(Client::class, 'user_id', 'id');

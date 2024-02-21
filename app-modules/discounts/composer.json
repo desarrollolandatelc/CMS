@@ -1,0 +1,24 @@
+{
+	"name": "modules/discounts",
+	"description": "",
+	"type": "library",
+	"version": "1.0",
+	"license": "proprietary",
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Modules\\Discounts\\": "src/",
+			"Modules\\Discounts\\Tests\\": "tests/",
+			"Modules\\Discounts\\Database\\Factories\\": "database/factories/",
+			"Modules\\Discounts\\Database\\Seeders\\": "database/seeders/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Modules\\Discounts\\Providers\\DiscountsServiceProvider"
+			]
+		}
+	}
+}

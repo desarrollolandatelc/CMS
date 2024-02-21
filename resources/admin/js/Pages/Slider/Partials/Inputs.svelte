@@ -16,6 +16,9 @@
     let modules = [];
 
     import slugify from "slugify";
+    import Repeater from "../../../Components/Gui/Repeater.svelte";
+    import ImageForm from "./ImageForm.svelte";
+    import Editor from "@tinymce/tinymce-svelte";
 
     $: if ($form.name && $form.name.length > 0) {
         $form.alias = slugify($form.name);
@@ -84,6 +87,30 @@
                             {$form.errors.alias}
                         </Helper>
                     {/if}
+                </div>
+
+                <div class="w-full col-span-full mt-4">
+                    <Label for="price">
+                        Descripción <sup class="text-red-600">*</sup>
+                    </Label>
+                    <Editor
+                        id="description"
+                        apiKey="2b1c61f1wtvokeiudot95vc7iu0bdr8pm9rzyj8lmgdc5n1o"
+                        bind:value={$form.description}
+                    />
+                    {#if $form.errors.description}
+                        <Helper color="red" class="mt-2">
+                            {$form.errors.description}
+                        </Helper>
+                    {/if}
+                </div>
+
+                <div class="w-full col-span-full">
+                    <Label>Imágenes</Label>
+                    <Repeater
+                        COMPONENT={ImageForm}
+                        bind:values={$form.details}
+                    />
                 </div>
             </div>
         </Card>

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ea11709d6270ba8f94894cf261c0c60e",
+    "content-hash": "eead6c2c19c1c9a62c272ed7ece39102",
     "packages": [
         {
             "name": "brick/math",
@@ -1895,12 +1895,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "745a5d637b54a8e799275c8112da0be588aadd27"
+                "reference": "56bdf4626bc4a3fb6702a9e631e5c1c5b55a4e73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/745a5d637b54a8e799275c8112da0be588aadd27",
-                "reference": "745a5d637b54a8e799275c8112da0be588aadd27",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/56bdf4626bc4a3fb6702a9e631e5c1c5b55a4e73",
+                "reference": "56bdf4626bc4a3fb6702a9e631e5c1c5b55a4e73",
                 "shasum": ""
             },
             "require": {
@@ -2091,7 +2091,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-02-20T10:27:44+00:00"
+            "time": "2024-02-20T15:14:37+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -2950,6 +2950,38 @@
                     "Modules\\Fields\\Tests\\": "tests/",
                     "Modules\\Fields\\Database\\Factories\\": "database/factories/",
                     "Modules\\Fields\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "modules/file_manager",
+            "version": "1.0",
+            "dist": {
+                "type": "path",
+                "url": "app-modules/file_manager",
+                "reference": "4fc716ee93ea8658bfe6280924247632bb81c44d"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Modules\\FileManager\\Providers\\FileManagerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Modules\\FileManager\\": "src/",
+                    "Modules\\FileManager\\Tests\\": "tests/",
+                    "Modules\\FileManager\\Database\\Factories\\": "database/factories/",
+                    "Modules\\FileManager\\Database\\Seeders\\": "database/seeders/"
                 }
             },
             "license": [
@@ -8456,16 +8488,16 @@
         },
         {
             "name": "laravel/pint",
-            "version": "v1.13.11",
+            "version": "v1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/pint.git",
-                "reference": "60a163c3e7e3346a1dec96d3e6f02e6465452552"
+                "reference": "6b127276e3f263f7bb17d5077e9e0269e61b2a0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/pint/zipball/60a163c3e7e3346a1dec96d3e6f02e6465452552",
-                "reference": "60a163c3e7e3346a1dec96d3e6f02e6465452552",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/6b127276e3f263f7bb17d5077e9e0269e61b2a0e",
+                "reference": "6b127276e3f263f7bb17d5077e9e0269e61b2a0e",
                 "shasum": ""
             },
             "require": {
@@ -8518,20 +8550,20 @@
                 "issues": "https://github.com/laravel/pint/issues",
                 "source": "https://github.com/laravel/pint"
             },
-            "time": "2024-02-13T17:20:13+00:00"
+            "time": "2024-02-20T17:38:05+00:00"
         },
         {
             "name": "laravel/sail",
-            "version": "v1.27.4",
+            "version": "v1.28.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "3047e1a157fad968cc5f6e620d5cbe5c0867fffd"
+                "reference": "a05861ca9b04558b1ec1f36cff521a271a259b6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/3047e1a157fad968cc5f6e620d5cbe5c0867fffd",
-                "reference": "3047e1a157fad968cc5f6e620d5cbe5c0867fffd",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/a05861ca9b04558b1ec1f36cff521a271a259b6c",
+                "reference": "a05861ca9b04558b1ec1f36cff521a271a259b6c",
                 "shasum": ""
             },
             "require": {
@@ -8580,7 +8612,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2024-02-08T15:24:21+00:00"
+            "time": "2024-02-20T15:11:00+00:00"
         },
         {
             "name": "mockery/mockery",

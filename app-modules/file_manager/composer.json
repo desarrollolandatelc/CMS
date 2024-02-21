@@ -1,0 +1,24 @@
+{
+	"name": "modules/file_manager",
+	"description": "",
+	"type": "library",
+	"version": "1.0",
+	"license": "proprietary",
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Modules\\FileManager\\": "src/",
+			"Modules\\FileManager\\Tests\\": "tests/",
+			"Modules\\FileManager\\Database\\Factories\\": "database/factories/",
+			"Modules\\FileManager\\Database\\Seeders\\": "database/seeders/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Modules\\FileManager\\Providers\\FileManagerServiceProvider"
+			]
+		}
+	}
+}
