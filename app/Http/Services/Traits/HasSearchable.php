@@ -13,7 +13,7 @@ trait HasSearchable
     {
         $query = $request->get('query');
         $table = $request->get('table');
-        $providers = DB::table($table)->where('status', 1)->where('name', 'like', '%' . $query . '%')->limit(12);
+        $providers = DB::table($table)->where('status', 1)->select('id', 'name', 'status')->where('name', 'like', '%' . $query . '%')->limit(12);
 
         return response()->json($providers->get());
     }

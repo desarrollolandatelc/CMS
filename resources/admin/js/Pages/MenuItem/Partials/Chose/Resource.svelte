@@ -9,11 +9,8 @@
     let defaultModal = false;
 
     const selected = (event) => {
-        console.log($form.internal_link.relationship);
-        $form.internal_link.resource_name = getName(
-            $form.internal_link.relationship,
-            event,
-        );
+        console.log(event.detail);
+        $form.internal_link.resource_name = event.detail.name;
 
         $form.internal_link.resource_value = event.detail.id;
         defaultModal = false;

@@ -1,6 +1,6 @@
 <script>
-    import Table from "../../../Components/Gui/Table.svelte";
     import ModalBodyTableCells from "../../../Components/Core/ModalBodyTableCells.svelte";
+    import Table from "../../../Components/Gui/Table.svelte";
     export let data;
 </script>
 

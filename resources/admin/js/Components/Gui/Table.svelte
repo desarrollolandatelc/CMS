@@ -18,7 +18,13 @@
     export let BODY_FORMAT_TABLE = null;
 
     export let data;
-    let headers = Object.keys(data[0]);
+    let headers = [];
+    $: if (data.length > 0) {
+        headers = Object.keys(data[0]);
+    } else {
+        headers = [];
+    }
+
     const toggleAll = (e) => {
         selected = selectedAll ? data.map((item) => item.id) : [];
     };

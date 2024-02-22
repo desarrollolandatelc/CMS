@@ -11,8 +11,7 @@
         status: false,
         parent_id: null,
         parent: {
-            id: null,
-            name: "",
+            name: null,
         },
     });
 

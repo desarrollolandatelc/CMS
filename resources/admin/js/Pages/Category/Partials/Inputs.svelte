@@ -18,6 +18,7 @@
     export let form;
     import slugify from "slugify";
     import Table from "../../../Components/Gui/Table.svelte";
+    import TableFormat from "./TableFormat.svelte";
     let defaultModal = false;
 
     $: if ($form.name && $form.name.length > 0) {
@@ -107,7 +108,7 @@
 
             <InputAction value={$form.parent?.name} bind:defaultModal>
                 <WindowTable
-                    COMPONENT={Table}
+                    COMPONENT={TableFormat}
                     searchRoute="categories.search"
                     table="categories"
                     on:change={selected}

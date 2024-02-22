@@ -50,8 +50,8 @@
         });
     };
 </script>
-{JSON.stringify($form)}
 <AuthenticatedLayout>
+    {JSON.stringify($form)}
     <Heading tag="h3" class="mb-4">Registrar producto</Heading>
     <form on:submit|preventDefault={submit}>
         <Inputs {form}></Inputs>

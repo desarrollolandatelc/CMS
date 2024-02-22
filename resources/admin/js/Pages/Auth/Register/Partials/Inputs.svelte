@@ -16,6 +16,7 @@
     import { onMount } from "svelte";
     import WindowTable from "../../../../Components/Core/WindowTable.svelte";
     import Table from "../../../../Components/Gui/Table.svelte";
+    import TableFormat from "./TableFormat.svelte";
 
     const route = window.route;
 
@@ -51,7 +52,9 @@
     <div class="md:col-span-2">
         <Card horizontal size="xl" class="w-full grid md:grid-cols-2 gap-2">
             <div class="w-full">
-                <Label for="name">Nombre de usuario <sup class="text-red-600">*</sup></Label>
+                <Label for="name"
+                    >Nombre de usuario <sup class="text-red-600">*</sup></Label
+                >
 
                 <Input
                     id="name"
@@ -68,7 +71,9 @@
                 {/if}
             </div>
             <div class="w-full">
-                <Label for="email">Correo electrónico <sup class="text-red-600">*</sup></Label>
+                <Label for="email"
+                    >Correo electrónico <sup class="text-red-600">*</sup></Label
+                >
                 <Input
                     id="email"
                     type="email"
@@ -85,7 +90,10 @@
             </div>
 
             <div class="w-full md:mt-4">
-                <Label for="role" class="ml-0">Función del usuario <sup class="text-red-600">*</sup></Label>
+                <Label for="role" class="ml-0"
+                    >Función del usuario <sup class="text-red-600">*</sup
+                    ></Label
+                >
                 {#if roles.length > 0}
                     <Select
                         id="role"
@@ -108,7 +116,9 @@
     </div>
     <div class="md:col-span-1">
         <Card size="xl">
-            <Heading tag="h4" class="border-b">Estado <sup class="text-red-600">*</sup></Heading>
+            <Heading tag="h4" class="border-b"
+                >Estado <sup class="text-red-600">*</sup></Heading
+            >
             <Label for="email" class="block mt-4 w-full"
                 >¿Desea que este usuario este activo?</Label
             >
@@ -130,7 +140,7 @@
 
             <InputAction value={$form.client?.name} bind:defaultModal>
                 <WindowTable
-                    COMPONENT={Table}
+                    COMPONENT={TableFormat}
                     searchRoute="clients.search"
                     table="clients"
                     on:change={selected}

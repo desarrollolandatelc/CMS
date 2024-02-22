@@ -20,7 +20,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $paginate = Product::select('products.id', 'barcode', 'sku','titles.name as title', 'price', 'products.status',)
+        $paginate = Product::select('products.id', 'barcode', 'sku', 'titles.name as title', 'price', 'products.status',)
             ->join('titles', 'titles.id', '=', 'products.title_id')->paginate(12);
         return Inertia::render('Product/Index', [
             'paginate' => $paginate
@@ -128,7 +128,7 @@ class ProductController extends Controller
             ->join('providers', 'providers.id', '=', 'products.provider_id')
             ->join('brands', 'brands.id', '=', 'products.brand_id')
             ->where('titles.name', 'like', '%' . $querySearch . '%')
-            ->select('products.*', 'titles.name as name', 'providers.id', 'brands.name as brand_name')
+            ->select('products.id', 'products.images', 'products.barcode', 'products.sku', 'titles.name as name', 'products.price',  'providers.id', 'brands.name as brand_name')
             ->get();
         return response()->json($products);
     }

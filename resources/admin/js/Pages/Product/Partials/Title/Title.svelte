@@ -18,7 +18,7 @@
 </script>
 
 <Label for="email" class="block w-full">
-    Ítem de menú <sup class="text-red-600">*</sup>
+    Nombre <sup class="text-red-600">*</sup>
 </Label>
 <InputAction value={$form.title?.name} bind:defaultModal>
     <SearchSolid slot="button-title" />
