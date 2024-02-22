@@ -37,7 +37,6 @@
         </div>
         <Table
             data={paginate.data}
-            headerLabel={["Cód barras", "Nombre", "Precio", "Estado"]}
             BODY_FORMAT_TABLE={IndexBodyTableCells}
             bind:selected
             bind:selectedAll

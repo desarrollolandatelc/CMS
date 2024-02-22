@@ -9,7 +9,7 @@ class SetUpDiscountsModule extends Migration
 	public function up()
 	{
 		Schema::create('discounts', function (Blueprint $table) {
-			$table->ulid();
+			$table->ulid('id')->primary();
 			$table->string('name');
 			$table->string('alias');
 			$table->string('product_field')->comment('Este es el nombre de la columna de la tabla de productos');

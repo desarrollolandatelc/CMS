@@ -4,39 +4,46 @@
     import { SearchSolid } from "flowbite-svelte-icons";
     import WindowTable from "../../../Components/Core/WindowTable.svelte";
     import ModalBodyTableCells from "../../../Components/Core/ModalBodyTableCells.svelte";
+    import ProductBodyTableCells from "../../Product/Partials/ModalBodyTableCells.svelte";
+
     import TableFormat from "./TableFormat.svelte";
 
     const discount_fields = [
         {
             label: "Producto",
-            field_value: "product_id",
+            field_value: "id",
             table: "products",
+            modalComponent: ProductBodyTableCells,
         },
         {
             label: "Proveedor",
             field_value: "provider_id",
             table: "providers",
+            modalComponent: ModalBodyTableCells,
         },
         {
             label: "Marca",
             field_value: "brand_id",
             table: "brands",
+            modalComponent: ModalBodyTableCells,
         },
     ];
 
     export let form;
+    let modalComponent = null;
     let defaultModal = false;
 
     const selected = (event) => {
         $form.table_field = discount_fields[event.target.value].table;
-        $form.discount_field = discount_fields[event.target.value].field_value;
-        $form.discount_field_value_name = null;
-        $form.discount_field_value = null;
+        $form.product_field = discount_fields[event.target.value].field_value;
+        $form.product_field_value = null;
+        $form.product_field_value_name = null;
+        modalComponent = discount_fields[event.target.value].modalComponent;
     };
 
     const selectedResource = (event) => {
-        $form.discount_field_value = event.detail.id;
-        $form.discount_field_value_name = event.detail.name;
+        $form.product_field_value = event.detail.id;
+        $form.product_field_value_name = event.detail.name;
 
         defaultModal = false;
     };
@@ -81,7 +88,7 @@
             Valor del recurso<sup class="text-red-600">*</sup>
         </Label>
         <InputAction
-            value={$form.discount_field_value_name}
+            value={$form.product_field_value_name}
             bind:defaultModal
             modalTitle="Buscar recurso"
         >
@@ -90,6 +97,7 @@
                 COMPONENT={TableFormat}
                 searchRoute="{$form.table_field}.search"
                 table={$form.table_field}
+                extraProps={{ modalComponent: modalComponent }}
                 on:change={selectedResource}
             ></WindowTable>
         </InputAction>

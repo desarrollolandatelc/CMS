@@ -14,7 +14,7 @@ class FieldController extends Controller
     use HasValidation, HasSearchable;
     public function index()
     {
-        $paginate = Field::paginate(12);
+        $paginate = Field::select('id', 'name','status')->paginate(12);
         return Inertia::render('Field/Index', [
             'paginate' => $paginate
         ]);

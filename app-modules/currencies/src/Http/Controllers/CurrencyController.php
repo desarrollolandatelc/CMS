@@ -14,7 +14,7 @@ class CurrencyController extends Controller
     use HasValidation, HasSearchable;
     public function index()
     {
-        $paginate = Currency::paginate(12);
+        $paginate = Currency::select('id', 'name', 'status')->paginate(12);
         return Inertia::render('Currency/Index', [
             'paginate' => $paginate
         ]);

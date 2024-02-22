@@ -22,7 +22,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $paginate = Client::paginate(12);
+        $paginate = Client::select('id', 'name', 'status', 'email')->paginate(12);
         return Inertia::render('Client/Index', [
             'paginate' => $paginate
         ]);

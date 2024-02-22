@@ -14,7 +14,13 @@ class CategoryController extends Controller
     use HasValidation, HasSearchable;
     public function index()
     {
-        $paginate = Category::with('parent')->paginate(12);
+        $paginate = Category::select(
+            'categories.id',
+            'categories.name as name',
+            'parent.name as parent_name',
+            'categories.status'
+        )
+            ->leftJoin('categories as parent', 'parent.id', '=', 'categories.parent_id')->paginate(12);
         return Inertia::render('Category/Index', [
             'paginate' => $paginate
         ]);

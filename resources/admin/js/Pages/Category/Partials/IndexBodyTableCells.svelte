@@ -33,5 +33,5 @@
             {item.status ? "Activo" : "Inactivo"}
         </span>
     </TableBodyCell>
-    <TableBodyCell>{item.parent?.name ?? "Sin Categoría padre"}</TableBodyCell>
+    <TableBodyCell>{item.parent_name ?? "Sin Categoría padre"}</TableBodyCell>
 </TableBodyRowFormat>

@@ -13,11 +13,21 @@
     import slugify from "slugify";
     import DiscountOptions from "./DiscountOptions.svelte";
 
+    let date = new Date();
+    const today = date.toISOString().split("T")[0];
+
     $: if ($form.name && $form.name.length > 0) {
         $form.alias = slugify($form.name);
     } else {
         $form.alias = null;
     }
+
+    const tomorrow = () => {
+        // Obtenemos la fecha escogida por el usuario
+        const start_date = new Date($form.start_date);
+        start_date.setDate(start_date.getDate() + 1);
+        return start_date.toISOString().split("T")[0];
+    };
 </script>
 
 {JSON.stringify($form)}
@@ -76,7 +86,7 @@
                         id="discount_field"
                         type="text"
                         class="mt-1 block w-full"
-                        value={$form.value}
+                        bind:value={$form.value}
                     ></Input>
                 </div>
             </div>
@@ -102,12 +112,19 @@
             </Helper>
             <div class="mt-4">
                 <Label>Fecha de inicio</Label>
-                <Input type="date" bind:value={$form.start_date}></Input>
+                <Input type="date" bind:value={$form.start_date} min={today}
+                ></Input>
             </div>
-            <div class="mt-4">
-                <Label>Fecha final</Label>
-                <Input type="date" bind:value={$form.end_date}></Input>
-            </div>
+            {#if $form.start_date}
+                <div class="mt-4">
+                    <Label>Fecha final</Label>
+                    <Input
+                        type="date"
+                        bind:value={$form.end_date}
+                        min={tomorrow()}
+                    ></Input>
+                </div>
+            {/if}
         </Card>
     </div>
 </div>

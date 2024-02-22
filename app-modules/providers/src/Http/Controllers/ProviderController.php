@@ -21,7 +21,7 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        $providers = Provider::paginate(12);
+        $providers = Provider::select('id', 'name', 'email','status')->paginate(12);
         return Inertia::render('Provider/Index', [
             'providers' => $providers
         ]);

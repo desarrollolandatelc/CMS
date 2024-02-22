@@ -10,14 +10,16 @@
 </script>
 
 <TableBodyRowFormat bind:selected {item} {hasBulkAction}>
+    <TableBodyCell>{item.id}</TableBodyCell>
     <TableBodyCell>{item.barcode}</TableBodyCell>
+    <TableBodyCell>{item.sku}</TableBodyCell>
     <TableBodyCell>
         <a
             type="button"
             class="hover:underline text-blue-600 cursor-pointer"
             href={route("products.edit", item.id)}
         >
-            {item.title.name}
+            {item.title}
         </a>
     </TableBodyCell>
     <TableBodyCell>{item.price}</TableBodyCell>

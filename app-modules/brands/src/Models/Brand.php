@@ -15,4 +15,8 @@ class Brand extends Model
         'alias',
         'status'
     ];
+
+    protected $hidden = [
+        'deleted_at',
+    ];
 }

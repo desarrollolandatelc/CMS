@@ -15,7 +15,7 @@ class ModuleTypeController extends Controller
 
     public function index()
     {
-        $paginate = ModuleType::paginate(12);
+        $paginate = ModuleType::select('id', 'name', 'status')->paginate(12);
         return Inertia::render('ModuleType/Index', [
             'paginate' => $paginate
         ]);

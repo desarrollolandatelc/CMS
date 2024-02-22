@@ -15,7 +15,7 @@ class BrandController extends Controller
 
     public function index()
     {
-        $paginate = Brand::paginate(12);
+        $paginate = Brand::select('id', 'name', 'status')->paginate(12);
         return Inertia::render('Brand/Index', [
             'paginate' => $paginate
         ]);

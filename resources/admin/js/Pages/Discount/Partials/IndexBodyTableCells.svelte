@@ -19,7 +19,7 @@
         <a
             type="button"
             class="hover:underline text-blue-600 cursor-pointer"
-            href={route("brands.edit", item.id)}
+            href={route("discounts.edit", item.id)}
         >
             {item.name}
         </a>

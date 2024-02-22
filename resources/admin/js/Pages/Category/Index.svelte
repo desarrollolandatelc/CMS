@@ -40,7 +40,6 @@
             data={paginate.data}
             bind:selected
             bind:selectedAll
-            headerLabel={["Nombre", "Estado", "Elemento padre"]}
             BODY_FORMAT_TABLE={IndexBodyTableCells}
         ></Table>
         <Pagination {paginate}></Pagination>

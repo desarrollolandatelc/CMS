@@ -15,4 +15,6 @@ class Title extends Model
         'alias',
         'status',
     ];
+
+    protected $hidden = ['deleted_at'];
 }

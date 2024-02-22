@@ -38,7 +38,6 @@
         </div>
         <Table
             data={paginate.data}
-            headerLabel={["Nombre", "Estado"]}
             BODY_FORMAT_TABLE={IndexBodyTableCells}
             bind:selected
             bind:selectedAll

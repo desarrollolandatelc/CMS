@@ -10,6 +10,8 @@
         alias: "",
         product_field: "",
         product_field_value: "",
+        product_field_value_name: "",
+        table_field:"",
         value: 0,
         start_date: "",
         end_date: "",

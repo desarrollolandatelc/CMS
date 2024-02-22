@@ -15,7 +15,7 @@ class SliderController extends Controller
 
     public function index()
     {
-        $paginate = Slider::paginate(12);
+        $paginate = Slider::select('id', 'name', 'status')->paginate(12);
         return Inertia::render('Slider/Index', [
             'paginate' => $paginate
         ]);
@@ -43,7 +43,7 @@ class SliderController extends Controller
         }
         $data = $request->all();
         $data['details'] = $this->extraFields($request->details);
-        
+
         Slider::create($data);
 
         return redirect()->route('sliders.create')->with('success', 'Brand created successfully');

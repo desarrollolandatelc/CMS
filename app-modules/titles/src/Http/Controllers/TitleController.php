@@ -14,7 +14,7 @@ class TitleController extends Controller
     use HasValidation, HasSearchable;
     public function index()
     {
-        $paginate = Title::paginate(12);
+        $paginate = Title::select('id', 'name', 'status')->paginate(12);
         return Inertia::render('Title/Index', [
             'paginate' => $paginate
         ]);

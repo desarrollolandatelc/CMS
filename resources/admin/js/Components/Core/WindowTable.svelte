@@ -7,6 +7,7 @@
     export let COMPONENT;
     export let BODY_FORMAT_TABLE = null;
     export let searchRoute;
+    export let extraProps = null;
     export let table;
     export let searchFor = "";
 
@@ -41,4 +42,5 @@
     bind:data
     on:change
     hasDeleteAll={false}
+    {extraProps}
 ></svelte:component>

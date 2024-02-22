@@ -15,7 +15,7 @@ class MenuItemController extends Controller
 
     public function index()
     {
-        $paginate = MenuItem::paginate(12);
+        $paginate = MenuItem::select('id', 'name', 'status')->paginate(12);
         return Inertia::render('MenuItem/Index', [
             'paginate' => $paginate
         ]);

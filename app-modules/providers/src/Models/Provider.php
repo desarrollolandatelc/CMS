@@ -21,4 +21,8 @@ class Provider extends Model
         'address',
         'status',
     ];
+
+    protected $hidden = [
+        'deleted_at',
+    ];
 }

@@ -11,4 +11,6 @@ class Article extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['name', 'alias', 'description', 'status'];
+
+    protected $hidden = ['deleted_at'];
 }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Modules\Discounts\Http\Controllers\Traits\HasValidation;
 use Modules\Discounts\Models\Discount;
+use Modules\Products\Models\Product;
 
 class DiscountController extends Controller
 {
@@ -14,7 +15,7 @@ class DiscountController extends Controller
 
     public function index()
     {
-        $paginate = Discount::paginate(12);
+        $paginate = Discount::select('id', 'name', 'status')->paginate(12);
         return Inertia::render('Discount/Index', [
             'paginate' => $paginate
         ]);
@@ -41,6 +42,7 @@ class DiscountController extends Controller
             return redirect()->route('discounts.create')->withErrors($validator)->withInput();
         }
 
+        $this->validateIfProductHasDiscount($request);
         Discount::create($validator->validated());
 
         return redirect()->route('discounts.create')->with('success', 'Discount created successfully');
@@ -50,7 +52,7 @@ class DiscountController extends Controller
     public function edit(Discount $discount)
     {
         return Inertia::render('Discount/Edit', [
-            'discounts' => $discount
+            'discount' => $discount
         ]);
     }
 
@@ -85,5 +87,26 @@ class DiscountController extends Controller
     {
         $brand->delete();
         return redirect()->route('discounts.index')->with('success', 'Discount deleted successfully');
+    }
+
+    public function validateIfProductHasDiscount($request)
+    {
+        //Obtenemos los descuentos activos y que el día actual esté en el rango de fecha
+        $discounts = Discount::where('status', 1)
+            ->orWhere(function ($query) {
+                $query->where('start_date', '<=', date('Y-m-d'))
+                    ->where('end_date', '>=', date('Y-m-d'));
+            })->get();
+
+        $product = Product::where($request->product_field, $request->product_field_value);
+        // Recorremos cada descuento
+        foreach ($discounts as $discount) {
+            $productWithDiscount = $product->where($discount->product_field,  $discount->product_field_value)
+                ->count();
+            if ($productWithDiscount > 0) {
+                dd("holis, ya existe");
+            }
+            dd("no existe ñero");
+        }
     }
 }

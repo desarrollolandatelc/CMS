@@ -20,7 +20,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $paginate = Product::with('brand', 'category', 'currency', 'provider', 'title')->paginate(12);
+        $paginate = Product::select('products.id', 'barcode', 'sku','titles.name as title', 'price', 'products.status',)
+            ->join('titles', 'titles.id', '=', 'products.title_id')->paginate(12);
         return Inertia::render('Product/Index', [
             'paginate' => $paginate
         ]);

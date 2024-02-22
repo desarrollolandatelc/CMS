@@ -20,4 +20,5 @@ class Discount extends Model
         'end_date',
         'status',
     ];
+    
 }

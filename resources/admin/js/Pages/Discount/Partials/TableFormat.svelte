@@ -1,13 +1,13 @@
 <script>
     import Table from "../../../Components/Gui/Table.svelte";
-    import ModalBodyTableCells from "../../../Components/Core/ModalBodyTableCells.svelte";
+    import ModalBodyTableCells from "../../Product/Partials/ModalBodyTableCells.svelte";
     export let data;
+    export let extraProps = null;
 </script>
 
 <Table
     {data}
-    headerLabel={["Nombre", "Estado"]}
-    BODY_FORMAT_TABLE={ModalBodyTableCells}
+    BODY_FORMAT_TABLE={extraProps.modalComponent}
     hasBulkAction={false}
     on:change
 ></Table>

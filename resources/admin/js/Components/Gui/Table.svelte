@@ -7,7 +7,7 @@
         TableHeadCell,
     } from "flowbite-svelte";
     import TableBodyRowFormat from "../Core/TableBodyRowFormat.svelte";
-
+    import { trans } from "../../utils/lang.js";
     export let selected = [];
     export let selectedAll = false;
 
@@ -17,10 +17,8 @@
      */
     export let BODY_FORMAT_TABLE = null;
 
-    export let headerLabel = [];
-
     export let data;
-
+    let headers = Object.keys(data[0]);
     const toggleAll = (e) => {
         selected = selectedAll ? data.map((item) => item.id) : [];
     };
@@ -33,11 +31,8 @@
                 <Checkbox on:change={toggleAll} bind:checked={selectedAll} />
             </TableHeadCell>
         {/if}
-        <TableHeadCell>ID</TableHeadCell>
-        {#each headerLabel as header}
-            <TableHeadCell>{header}</TableHeadCell>
-        {:else}
-            <TableHeadCell>Nombre</TableHeadCell>
+        {#each headers as header}
+            <TableHeadCell>{trans(header)}</TableHeadCell>
         {/each}
     </TableHead>
     <TableBody>

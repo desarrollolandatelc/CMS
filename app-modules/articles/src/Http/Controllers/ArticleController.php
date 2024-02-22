@@ -18,7 +18,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $paginate = Article::paginate(12);
+        $paginate = Article::select('id', 'name', 'alias', 'status')->paginate(12);
 
         return Inertia::render('Article/Index', [
             'paginate' => $paginate

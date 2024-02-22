@@ -14,7 +14,9 @@ class QuotationController extends Controller
     use HasValidation, HasDetails;
     public function index()
     {
-        $paginate = Quotation::with('client', 'user')->paginate(12);
+        $paginate = Quotation::select('quotations.id', 'clients.name as client_name', 'users.name as user_name', 'quotations.status', 'quotations.updated_at')
+            ->join('clients', 'quotations.client_id', '=', 'clients.id')
+            ->join('users', 'quotations.user_id', '=', 'users.id')->paginate(12);
         return Inertia::render('Quotation/Index', [
             'paginate' => $paginate
         ]);

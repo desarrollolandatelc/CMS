@@ -24,11 +24,11 @@
             class="hover:underline text-blue-600 cursor-pointer"
             href={route("quotations.edit", item.id)}
         >
-            {item.client.name}
+            {item.client_name}
         </a>
     </TableBodyCell>
     <TableBodyCell>
-        {item.user.name}
+        {item.user_name}
     </TableBodyCell>
 
     <TableBodyCell>

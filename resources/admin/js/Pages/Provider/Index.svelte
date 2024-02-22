@@ -35,7 +35,6 @@
             data={providers.data}
             bind:selected
             bind:selectedAll
-            headerLabel={["Nombre", "Email", "Estado"]}
             BODY_FORMAT_TABLE={IndexBodyTableCells}
         ></Table>
 

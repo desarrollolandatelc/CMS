@@ -14,7 +14,7 @@ class SiteController extends Controller
 
     public function index()
     {
-        $paginate = Site::paginate(12);
+        $paginate = Site::select('id', 'name', 'status')->paginate(12);
         return Inertia::render('Site/Index', [
             'paginate' => $paginate
         ]);

@@ -25,6 +25,9 @@
         </a>
     </TableBodyCell>
     <TableBodyCell>
+        {item.alias}
+    </TableBodyCell>
+    <TableBodyCell>
         <span
             class="text-white p-1 rounded-md"
             class:bg-green-500={item.status}
