@@ -9,10 +9,11 @@ class SetUpDiscountsModule extends Migration
 	public function up()
 	{
 		Schema::create('discounts', function (Blueprint $table) {
-			$table->id();
+			$table->ulid();
 			$table->string('name');
 			$table->string('alias');
 			$table->string('product_field')->comment('Este es el nombre de la columna de la tabla de productos');
+			$table->string('table_field')->comment('Este es el nombre de la tabla que tiene relación con el campo escogido');
 			$table->string('product_field_value')->comment('Este es el valor de la columna de la tabla de productos');
 			$table->unsignedInteger('value')->comment('Este es el valor del descuento, representado en porcentaje');
 			$table->date('start_date')->nullable();

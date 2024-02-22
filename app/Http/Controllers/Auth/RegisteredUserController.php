@@ -48,9 +48,8 @@ class RegisteredUserController extends Controller
 
         // Asignamos el role de usuario asignado por el administrador
         $user->assignRole($request->role);
-
         // Si el usuario tiene un cliente asociado, le asignamos el usuario
-        if ($request->client) {
+        if ($request->client['id']>0) {
             $client = Client::find($request->client['id']);
             $client->user()->associate($user);
             $client->save();

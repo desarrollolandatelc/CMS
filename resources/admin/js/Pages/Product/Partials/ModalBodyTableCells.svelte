@@ -36,7 +36,7 @@
             class="hover:underline text-blue-600 cursor-pointer"
             on:click={() => dispatch("change", item)}
         >
-            {item.title.name}
+            {item.name}
         </button>
     </TableBodyCell>
     <TableBodyCell>{item.price}</TableBodyCell>

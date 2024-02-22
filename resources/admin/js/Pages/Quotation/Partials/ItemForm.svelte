@@ -23,10 +23,10 @@
 
     const selected = (event) => {
         detail.barcode = event.detail.barcode;
-        detail.title = event.detail.title.name;
+        detail.title = event.detail.name;
         detail.price = parseInt(event.detail.price);
         detail.quantity = 1;
-        const provider_id = event.detail.provider.id;
+        const provider_id = event.detail.provider_id;
         defaultModal = false;
         searchDiscount(provider_id);
     };
